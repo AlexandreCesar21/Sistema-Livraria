@@ -57,6 +57,14 @@
             <li>
                 <a href="#">
                     <span class="icon" title="Informações">
+                        <ion-icon name="list-outline"></ion-icon>
+                      </span>
+                    <span class="title">Lista de tarefas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon" title="Informações">
                         <ion-icon name="information-circle-outline"></ion-icon>
                       </span>
                     <span class="title">Informações</span>
@@ -81,12 +89,6 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="nome do livro">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
 
                 <div class="user">
                     <img src="../img/image copy.png" alt="">
@@ -99,8 +101,8 @@
             </div>
             <form action="">
                 <div class="form-livro-1">
-                    <label for="">Livro:</label>
-                    <input type="text" placeholder="Nome do livro" required>  
+                    <label for="">Titulo:</label>
+                    <input type="text" placeholder="Titulo" required>  
                     <label for="">Valor:</label>
                     <input type="text" placeholder="Valor do livro" required> 
                     <label for="">Autor:</label>
@@ -148,6 +150,9 @@
                         <option value="">AUDIO</option>
                     </select>
                 </div>
+                <div class="button-devs">
+                    <input type="button" value="Cadastrar" class="button-cadast">
+                </div>
             </form>
         </div>
 
@@ -156,6 +161,15 @@
             <div class="recentOrders">
                 <div class="cardHeader">
                     <h2>LIVROS</h2>
+                </div>
+                
+                <div class="selecoes">
+                    <div class="search">
+                        <label>
+                            <input type="text" placeholder="nome do livro">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
                 </div>
 
                 <table>
@@ -170,7 +184,6 @@
                             <td class="formato">Formato</td>
                             <td class="categoria">Categoria</td>
                             <td class="status">Status</td>
-                            <td class="Atualizar">Atualizar</td>
                         </tr>
                     </thead>
 
@@ -185,16 +198,10 @@
                             <td class="formato">Fisico</td>
                             <td class="categoria">Evangelico</td>
                             <td><span class="status delivered">Disponivel</span></td>
-                            <td class="Deletar">Deletar</td>
                         </tr>                               
                     </tbody>
                 </table>
-
         </section>
-
-
-
-
     </main>
 
 
