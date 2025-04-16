@@ -97,6 +97,7 @@
 
 
 
+
   /* ------- Main -------- */
 
 
@@ -128,7 +129,7 @@
   .toggle {
     position: relative;
     width: 60px;
-    top: 32px;
+    top: 2px;
     left: 20px;
     height: 60px;
     display: flex;
@@ -147,7 +148,7 @@
     overflow: hidden;
     cursor: pointer;
     right: 40px;
-    top: 15px;
+    top: 5px;
   }
   
   .user img {
@@ -196,8 +197,13 @@
 
 /* ---------- Formulario livro ----------  */
 
+.form-livro-header  {
+  position: absolute;
+  top: 60px;
+}
 
-.form-livro {
+
+main .form-livro {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -211,6 +217,17 @@
   width: 93%;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 60px;
+}
+
+form {
+  position: relative;
+  bottom: -8px;
+  border: solid 3px var(--blue);
+  border-top: none;
+  border-left: solid 3px var(--blue);
+  box-shadow: 30px 34px 25px rgba(0, 0, 0, 0.23); /*sombra 63*/
+  padding-bottom: 30px;
 }
 
 
@@ -314,9 +331,14 @@ option {
 }
 
 .button-devs {
-  text-align: right;
+  text-align: center;
   height: 50px;
   width: 80%;
+  padding-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  bottom: 20px;
 }
 
 .button-cadast { 
@@ -325,6 +347,8 @@ option {
   background-color: var(--blue);
   color: #f5f5f5;
   font-weight: 900;
+  font-size: 1.4em;
+
 }
 
 .button-cadast:hover {
@@ -339,7 +363,8 @@ option {
 
 .details {
     position: relative;
-    width: 150%;
+    left: 7px;
+    width: 147%;
     height: 10%;
     padding: 20px;
     display: grid;
@@ -354,14 +379,16 @@ option {
     min-height: 100px;
     background: var(--white);
     padding: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.17);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.63); /*sombra 63*/
     border-radius: 20px;
+    padding-bottom: 60px;
   }
   
   .details .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 4px;
   }
   .cardHeader h2 {
     font-weight: 900;
@@ -369,8 +396,12 @@ option {
   }
 
   .selecoes {
-    border: black solid 2px;
     padding: 5px;
+    display: grid;
+    grid-auto-flow: column;
+    columns: auto;
+
+    
   }
 
 
@@ -388,21 +419,36 @@ option {
   }
   
   .search label input {
-    width: 60%;
+    width: 110%;
     height: 25px;
     border-radius: 40px;
     padding: 5px 20px;
     padding-left: 35px;
     font-size: 15px;
     outline: none;
-    border: 1px solid var(--black2);
+    border: 2.5px solid var(--black2);
+    margin-top: 10px;
+    margin-bottom: -10px;
+    position: relative;
+    right: 20px;  
   }
   
   .search label ion-icon {
     position: absolute;
-    top: 0;
-    left: 10px;
+    top: 5px;
+    left: 0px;
     font-size: 1.2rem;
+  }
+
+
+  .selecoes .botoes-infr {
+    position: relative;
+    text-align: end;
+    top: 3px;
+  }
+  .selecoes .botoes-infr input {
+    width: 15%;
+    height: 60%;
   }
 
   .cardHeader .btn {
@@ -417,11 +463,14 @@ option {
   .details table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-  }
+    margin-top: -4px;
+    border: solid 3px var(--blue); 
+   }
+
   .details table thead td {
     font-weight:600;
-    
+    border: solid 3px var(--blue);
+    text-align: center
   }
 
 
@@ -432,16 +481,19 @@ option {
   }
   .details .recentOrders table tr:last-child {
     border-bottom: none;
+    
   }
  
   .details .recentOrders table tr td {
     padding: 10px;
+    border: solid 3px var(--blue);
+
   }
   .details .recentOrders table tr td:last-child {
-    text-align: end;
+    text-align: center;
   }
   .details .recentOrders table tr td:nth-child(2) {
-    text-align: end;
+    text-align: center;
   }
   .details .recentOrders table tr td:nth-child(3) {
     text-align: center;
@@ -527,28 +579,24 @@ option {
 
 
   .Atualizar {
-    left: 2px;
-    bottom: 10px;
-    position: relative;
     color: var(--white);
     background-color: #8de02c;
     border-radius: 10px;
-    width: 5px;
-    height: 1px;
     font-size: 14px;
-
+    font-weight: 900;
+    text-shadow: #0a0a0a5d 1px 1px 2px;
+    border: solid 1px var(--blue);
   }
+
   .Deletar {
-    left: 2px;
-    position: relative;
     color: var(--white);
     background-color: red;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 900;
-    padding-left: 32px;
-    width: 10%;
-    height: 300%;
+    text-shadow: #0a0a0a5d 1px 1px 2px;
+    border: solid 1px var(--blue);
+
   }
 
 
