@@ -114,39 +114,39 @@
                     <input type="text" placeholder="Nome da editora" required>
                     <label for="">Quantidade:</label>
                     <input type="text" placeholder="Quantidade do livro" required>
-                    <label for="">Status:</label>
-                    <select name="" id="">
-                        <option value="">EMPRESTADO</option>
-                        <option value="">DISPONÍVEL </option>
-                        <option value="">ESGOTADO </option>
-                        <option value="">DANIFICADO </option>
-                        <option value="">RESERVADO </option>
-                        <option value="">REMOVIDO</option>
+                    <label for="status">Status:</label>
+                    <select name="status" id="status">
+                        <option value="EMPRESTADO">EMPRESTADO</option>
+                        <option value="DISPONÍVEL">DISPONÍVEL</option>
+                        <option value="ESGOTADO">ESGOTADO</option>
+                        <option value="DANIFICADO">DANIFICADO </option>
+                        <option value="RESERVADO">RESERVADO </option>
+                        <option value="REMOVIDO">REMOVIDO</option>
                     </select>
                 </div>
               
                 <div class="form-livro-3">
-                    <label for="">Categoria:</label>
-                    <select name="" id="">
-                        <option value="">FICÇÃO</option>
-                        <option value="">NÃO FICÇÃO</option>
-                        <option value="">AUTO AJUDA</option>
-                        <option value="">TERROR</option>
-                        <option value="">ROMANCE</option>
-                        <option value="">BIOGRAFIA</option>
-                        <option value="">INFANTIL</option>  
+                    <label for="categoria">Categoria:</label>
+                    <select name="categoria" id="categoria">
+                        <option value="FICÇÃO" >FICÇÃO</option>
+                        <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
+                        <option value="AUTO AJUDA">AUTO AJUDA</option>
+                        <option value="TERROR">TERROR</option>
+                        <option value="ROMANCE">ROMANCE</option>
+                        <option value="BIOGRAFIA">BIOGRAFIA</option>
+                        <option value="INFANTIL">INFANTIL</option>  
                     </select>    
-                    <label for="">TipoCapa:</label>
-                    <select name="" id="">
-                        <option value="">DURA</option>
-                        <option value="">MOLDA</option>
-                        <option value="">BROCHURA</option>
+                    <label for="tipoCapa">TipoCapa:</label>
+                    <select name="tipoCapa" id="tipoCapa">
+                        <option value="DURA">DURA</option>
+                        <option value="MOLDA">MOLDA</option>
+                        <option value="BROCHURA">BROCHURA</option>
                     </select>    
-                    <label for="">Formato:</label>
-                    <select name="" id="">
-                        <option value="">FISICO</option>
-                        <option value="">DIGITAL</option>
-                        <option value="">AUDIO</option>
+                    <label for="formato">Formato:</label>
+                    <select name="formato" id="formato">
+                        <option value="FISICO">FISICO</option>
+                        <option value="DIGITAL">DIGITAL</option>
+                        <option value="AUDIO">AUDIO</option>
                     </select>
                 </div>
                 <div class="button-devs">
@@ -181,7 +181,7 @@
                     </div>
                 </div>
 
-                <table>
+                <table id="livrosTable">
                     <thead>
                         <tr>
                             <td class="titulo">Titulo</td>
@@ -195,59 +195,16 @@
                             <td class="status">Status</td>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            <td class="titulo">Tese</td>
-                            <td class="valor">100,00</td>
-                            <td class="Autor">João Marcos</td>
-                            <td class="Editora">Bereia</td>
-                            <td class="quantidade">2</td>
-                            <td class="tipo-capa">Comum</td>
-                            <td class="formato">Fisico</td>
-                            <td class="categoria">Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                        </tr>                               
-                        <tr>
-                            <td class="titulo">Tese</td>
-                            <td class="valor">100,00</td>
-                            <td class="Autor">João Marcos</td>
-                            <td class="Editora">Bereia</td>
-                            <td class="quantidade">2</td>
-                            <td class="tipo-capa">Comum</td>
-                            <td class="formato">Fisico</td>
-                            <td class="categoria">Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                        </tr>                               
-                        <tr>
-                            <td class="titulo">Tese</td>
-                            <td class="valor">100,00</td>
-                            <td class="Autor">João Marcos</td>
-                            <td class="Editora">Bereia</td>
-                            <td class="quantidade">2</td>
-                            <td class="tipo-capa">Comum</td>
-                            <td class="formato">Fisico</td>
-                            <td class="categoria">Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                        </tr>                               
-                        <tr>
-                            <td class="titulo">Tese</td>
-                            <td class="valor">100,00</td>
-                            <td class="Autor">João Marcos</td>
-                            <td class="Editora">Bereia</td>
-                            <td class="quantidade">2</td>
-                            <td class="tipo-capa">Comum</td>
-                            <td class="formato">Fisico</td>
-                            <td class="categoria">Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                        </tr>                               
+                        <!-- As linhas serão inseridas aqui -->
                     </tbody>
                 </table>
+                
         </section>
     </main>
 
 
-
+    <script src="../js/livro.js"></script>
     <script src="../js/index.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

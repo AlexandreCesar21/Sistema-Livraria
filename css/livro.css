@@ -447,7 +447,7 @@ option {
     top: 3px;
   }
   .selecoes .botoes-infr input {
-    width: 15%;
+    width: 20%;
     height: 60%;
   }
 
@@ -498,38 +498,6 @@ option {
   .details .recentOrders table tr td:nth-child(3) {
     text-align: center;
   }
-  .status.delivered {
-    padding: 2px 4px;
-    background: #8de02c;
-    color: var(--white);
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .status.pending {
-    padding: 2px 4px;
-    background: #e9b10a;
-    color: var(--white);
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .status.return {
-    padding: 2px 4px;
-    background: #f00;
-    color: var(--white);
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .status.inProgress {
-    padding: 2px 4px;
-    background: #1795ce;
-    color: var(--white);
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-  }
   
   .recentCustomers {
     position: relative;
@@ -577,29 +545,44 @@ option {
 
   
 
-
   .Atualizar {
     color: var(--white);
     background-color: #8de02c;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 900;
-    text-shadow: #0a0a0a5d 1px 1px 2px;
     border: solid 1px var(--blue);
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none; /* sem sombra padrão */
   }
-
+  
+  .Atualizar:hover {
+    background-color: #88ff00fb;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2); /* sombra no botão inteiro */
+  }
+  
+  
   .Deletar {
     color: var(--white);
     background-color: red;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 900;
-    text-shadow: #0a0a0a5d 1px 1px 2px;
     border: solid 1px var(--blue);
-
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none; /* sem sombra padrão */
   }
 
 
+  .Deletar:hover {
+    background-color: #e30000;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2); /* sombra no botão inteiro */
+  }
+  
 
 
 
