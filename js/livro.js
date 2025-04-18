@@ -59,7 +59,7 @@ function getValue(selector) {
 function preencherFormularioComLinha(linha) {
     // Limpar o formulário de cadastro para garantir que não apareçam dados antigos
     limparFormulario();
-    
+
     // Preencher os campos do formulário de cadastro com os dados da linha clicada
     document.querySelector("input[placeholder='Titulo']").value = linha.cells[0].innerText;
     document.querySelector("input[placeholder='Valor do livro']").value = linha.cells[1].innerText;
@@ -71,13 +71,13 @@ function preencherFormularioComLinha(linha) {
     document.querySelector("#categoria").value = linha.cells[7].innerText;
     document.querySelector("#status").value = linha.cells[8].innerText;
 
-    // Esconder o formulário de cadastro ao clicar na linha para edição
+    // Esconder o formulário de cadastro e mostrar o modal
     document.querySelector(".form-cadastro").style.display = "none";
-    // Mostrar o modal de edição
     modal.style.display = "flex";
 }
 
 function limparFormulario() {
+    // Limpar todos os campos de entrada do formulário
     document.querySelectorAll("input[type='text']").forEach(input => input.value = "");
     document.querySelectorAll("select").forEach(select => select.value = "");
 }
@@ -95,6 +95,9 @@ document.querySelector("#livrosTable tbody").addEventListener("click", function 
 
     linhaSelecionada = linha;
 
+    // Limpar o formulário de cadastro antes de preencher o modal com os dados da linha selecionada
+    limparFormulario();
+
     // Preencher os campos do modal com os dados da linha
     document.getElementById("editTitulo").value = linha.cells[0].innerText;
     document.getElementById("editValor").value = linha.cells[1].innerText;
@@ -106,6 +109,7 @@ document.querySelector("#livrosTable tbody").addEventListener("click", function 
     document.getElementById("editCategoria").value = linha.cells[7].innerText;
     document.getElementById("editStatus").value = linha.cells[8].innerText;
 
+    // Mostrar o modal
     modal.style.display = "flex";
 });
 
