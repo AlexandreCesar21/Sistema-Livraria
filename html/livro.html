@@ -6,6 +6,38 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/livro.css">
 </head>
+<div id="modalLivro" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Editar Livro</h2>
+        <form id="formEditarLivro">
+            <label>Titulo:</label>
+            <input type="text" id="editTitulo"><br>
+            <label>Valor:</label>
+            <input type="text" id="editValor"><br>
+            <label>Autor:</label>
+            <input type="text" id="editAutor"><br>
+            <label>Editora:</label>
+            <input type="text" id="editEditora"><br>
+            <label>Quantidade:</label>
+            <input type="text" id="editQuantidade"><br>
+            <label>Tipo Capa:</label>
+            <input type="text" id="editTipoCapa"><br>
+            <label>Formato:</label>
+            <input type="text" id="editFormato"><br>
+            <label>Categoria:</label>
+            <input type="text" id="editCategoria"><br>
+            <label>Status:</label>
+            <input type="text" id="editStatus"><br>
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnFechar">Fechar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <body>
     <nav class="navigation">
         <ul>
@@ -116,7 +148,8 @@
                     <input type="text" placeholder="Quantidade do livro" required>
                     <label for="status">Status:</label>
                     <select name="status" id="status">
-                        <option value="EMPRESTADO">EMPRESTADO</option>
+                        <option value="" disabled selected ></option>
+                        <option value="EMPRESTADO" >EMPRESTADO</option>
                         <option value="DISPONÍVEL">DISPONÍVEL</option>
                         <option value="ESGOTADO">ESGOTADO</option>
                         <option value="DANIFICADO">DANIFICADO </option>
@@ -128,6 +161,7 @@
                 <div class="form-livro-3">
                     <label for="categoria">Categoria:</label>
                     <select name="categoria" id="categoria">
+                        <option value="" disabled selected></option>
                         <option value="FICÇÃO" >FICÇÃO</option>
                         <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
                         <option value="AUTO AJUDA">AUTO AJUDA</option>
@@ -138,19 +172,21 @@
                     </select>    
                     <label for="tipoCapa">TipoCapa:</label>
                     <select name="tipoCapa" id="tipoCapa">
+                        <option value="" disabled selected></option>
                         <option value="DURA">DURA</option>
                         <option value="MOLDA">MOLDA</option>
                         <option value="BROCHURA">BROCHURA</option>
                     </select>    
                     <label for="formato">Formato:</label>
                     <select name="formato" id="formato">
+                        <option value="" disabled selected></option>
                         <option value="FISICO">FISICO</option>
                         <option value="DIGITAL">DIGITAL</option>
                         <option value="AUDIO">AUDIO</option>
                     </select>
                 </div>
                 <div class="button-devs">
-                    <input type="button" value="Cadastrar" class="button-cadast">
+                    <input type="button" value="Cadastrar" class="button-cadast" >
                 </div>
             </form>
             
