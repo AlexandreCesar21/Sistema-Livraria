@@ -13,7 +13,7 @@
 
 <div id="modalLivro" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close-button">&times;</span>
+        <span class="close-button" style="display: none;">&times;</span>
         <h2>Editar Livro</h2>
         <form id="formEditarLivro">
             <div class="modal-header">
@@ -28,10 +28,10 @@
             </div>
             
             <div class="modal-body">
-                <label>Editora:</label>
+                <label id="edit">Editora:</label>
                 <input type="text" id="editEditora"><br>
                 
-                <label>Quantidade:</label>
+                <label id="edit">Quantidade:</label>
                 <input type="text" id="editQuantidade"><br>
                 
                 <label>Tipo Capa:</label>

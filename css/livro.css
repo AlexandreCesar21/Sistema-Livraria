@@ -690,7 +690,7 @@ option {
 .modal-header input{
   width: 100px;
   position: relative;
-  right: 5px;
+  right: 15px;
   margin: 40px;
 }
 
@@ -714,6 +714,18 @@ option {
   width: 100px;
   position: relative;
   right: 14px;
+}
+
+#edit {
+  position: relative;
+  left: 30px;
+}
+
+.modal-body > #editTipoCapa {
+  position: relative;
+  top: 1px;
+  right: 40px;
+  width: 300px;
 }
 
 .modal-footer {
