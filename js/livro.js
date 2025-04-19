@@ -217,3 +217,20 @@ window.addEventListener("beforeunload", salvarLivrosLocalStorage);
 
 // Carrega ao abrir a página
 window.addEventListener("load", carregarLivrosLocalStorage);
+
+
+
+// Função de busca de livros
+document.getElementById("buscarLivro").addEventListener("input", function () {
+    const termoBusca = this.value.toLowerCase(); // texto digitado
+    const linhas = document.querySelectorAll("#livrosTable tbody tr");
+
+    linhas.forEach((linha) => {
+        const textoLinha = linha.innerText.toLowerCase(); // conteúdo da linha
+        if (textoLinha.includes(termoBusca)) {
+            linha.style.display = ""; // mostra a linha
+        } else {
+            linha.style.display = "none"; // esconde a linha
+        }
+    });
+});
