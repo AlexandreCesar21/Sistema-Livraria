@@ -6,29 +6,78 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/livro.css">
 </head>
+
+
+
+
+
 <div id="modalLivro" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button">&times;</span>
         <h2>Editar Livro</h2>
         <form id="formEditarLivro">
-            <label>Titulo:</label>
-            <input type="text" id="editTitulo"><br>
-            <label>Valor:</label>
-            <input type="text" id="editValor"><br>
-            <label>Autor:</label>
-            <input type="text" id="editAutor"><br>
-            <label>Editora:</label>
-            <input type="text" id="editEditora"><br>
-            <label>Quantidade:</label>
-            <input type="text" id="editQuantidade"><br>
-            <label>Tipo Capa:</label>
-            <input type="text" id="editTipoCapa"><br>
-            <label>Formato:</label>
-            <input type="text" id="editFormato"><br>
-            <label>Categoria:</label>
-            <input type="text" id="editCategoria"><br>
-            <label>Status:</label>
-            <input type="text" id="editStatus"><br>
+            <div class="modal-header">
+                <label>Titulo:</label>
+                <input type="text" id="editTitulo"><br>
+                
+                <label>Valor:</label>
+                <input type="text" id="editValor"><br>
+                
+                <label>Autor:</label>
+                <input type="text" id="editAutor"><br>
+            </div>
+            
+            <div class="modal-body">
+                <label>Editora:</label>
+                <input type="text" id="editEditora"><br>
+                
+                <label>Quantidade:</label>
+                <input type="text" id="editQuantidade"><br>
+                
+                <label>Tipo Capa:</label>
+                <select name="tipoCapa" id="editTipoCapa">
+                    <option value="" disabled selected></option>
+                    <option value="DURA">DURA</option>
+                    <option value="MOLDA">MOLDA</option>
+                    <option value="BROCHURA">BROCHURA</option>
+                </select><br>
+
+            </div>
+
+            <div class="modal-footer">
+                <label>Formato:</label>
+                <select name="formato" id="editFormato">
+                    <option value="" disabled selected></option>
+                    <option value="FISICO">FISICO</option>
+                    <option value="DIGITAL">DIGITAL</option>
+                    <option value="AUDIO">AUDIO</option>
+                </select><br>
+                
+                <label>Categoria:</label>
+                <select name="categoria" id="editCategoria">
+                    <option value="" disabled selected></option>
+                    <option value="FICÇÃO" >FICÇÃO</option>
+                    <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
+                    <option value="AUTO AJUDA">AUTO AJUDA</option>
+                    <option value="TERROR">TERROR</option>
+                    <option value="ROMANCE">ROMANCE</option>
+                    <option value="BIOGRAFIA">BIOGRAFIA</option>
+                    <option value="INFANTIL">INFANTIL</option>  
+                </select><br>
+    
+                <label>Status:</label>
+                <select name="status" id="editStatus">
+                    <option value="" disabled selected ></option>
+                    <option value="EMPRESTADO" >EMPRESTADO</option>
+                    <option value="DISPONÍVEL">DISPONÍVEL</option>
+                    <option value="ESGOTADO">ESGOTADO</option>
+                    <option value="DANIFICADO">DANIFICADO </option>
+                    <option value="RESERVADO">RESERVADO </option>
+                    <option value="REMOVIDO">REMOVIDO</option>
+                </select>
+            </div>
+
+            
 
             <div class="modal-buttons">
                 <button type="button" id="btnSalvar">Salvar</button>
@@ -232,11 +281,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- As linhas serão inseridas aqui -->
+                        <tr>
+                            <td>Tese</td>
+                            <td>100,00</td>
+                            <td>João Marcos</td>
+                            <td>Bereia</td>
+                            <td>2</td>
+                            <td>Comum</td>
+                            <td>Fisico</td>
+                            <td>Evangelico</td>
+                            <td><span class="status delivered">Disponivel</span></td>
+                        </tr>
                     </tbody>
                 </table>
                 
         </section>
+
+
+
+        
     </main>
 
 
