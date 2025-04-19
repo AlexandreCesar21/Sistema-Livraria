@@ -3,32 +3,36 @@ let linhaSelecionada = null;
 // Função para cadastrar
 document.querySelector(".button-cadast").addEventListener("click", function () {
     // Apenas realiza o cadastro se não há linha selecionada para edição
-    if (!linhaSelecionada) {
-        const tabela = document.querySelector("#livrosTable tbody");
+    const tabela = document.querySelector("#livrosTable tbody");
 
-        const novaLinha = tabela.insertRow();
-        novaLinha.innerHTML = `
-            <td>${getValue("input[placeholder='Titulo']")}</td>
-            <td>${getValue("input[placeholder='Valor do livro']")}</td>
-            <td>${getValue("input[placeholder='Nome do autor']")}</td>
-            <td>${getValue("input[placeholder='Nome da editora']")}</td>
-            <td>${getValue("input[placeholder='Quantidade do livro']")}</td>
-            <td>${getValue("#tipoCapa")}</td>
-            <td>${getValue("#formato")}</td>
-            <td>${getValue("#categoria")}</td>
-            <td>${getValue("#status")}</td>
-        `;
+    const novaLinha = tabela.insertRow();
+    novaLinha.innerHTML = `
+        <td>${getValue("input[placeholder='Titulo']")}</td>
+        <td>${getValue("input[placeholder='Valor do livro']")}</td>
+        <td>${getValue("input[placeholder='Nome do autor']")}</td>
+        <td>${getValue("input[placeholder='Nome da editora']")}</td>
+        <td>${getValue("input[placeholder='Quantidade do livro']")}</td>
+        <td>${getValue("#tipoCapa")}</td>
+        <td>${getValue("#formato")}</td>
+        <td>${getValue("#categoria")}</td>
+        <td>${getValue("#status")}</td>
+    `;
 
-        novaLinha.addEventListener("click", function () {
-            linhaSelecionada = this;
-            preencherFormularioComLinha(this);
-        });
+    novaLinha.addEventListener("click", function () {
+        linhaSelecionada = this;
+        preencherFormularioComLinha(this);
+    });
 
-        limparFormulario();
-    } else {
-        alert("Para cadastrar um novo livro, desmarque a linha de edição.");
-    }
+    limparFormulario();
+    linhaSelecionada = null;  // Desmarcar qualquer linha de edição após o cadastro
 });
+
+
+
+
+
+
+
 
 // Função para atualizar
 document.querySelector(".Atualizar").addEventListener("click", function () {
@@ -151,4 +155,41 @@ closeBtn.addEventListener("click", () => {
     limparFormulario();
     // Mostrar novamente o formulário de cadastro
     document.querySelector(".form-cadastro").style.display = "block";
+});
+
+
+
+
+// Quando clicar em uma linha da tabela
+document.querySelectorAll("#livrosTable tbody tr").forEach((linha) => {
+    linha.addEventListener("click", () => {
+        linhaSelecionada = linha; // salva a referência da linha selecionada
+
+        const colunas = linha.querySelectorAll("td");
+
+        // Preenche os campos do modal com os valores da linha
+        document.getElementById("editTitulo").value = colunas[0].textContent;
+        document.getElementById("editValor").value = colunas[1].textContent;
+        document.getElementById("editAutor").value = colunas[2].textContent;
+        document.getElementById("editEditora").value = colunas[3].textContent;
+        document.getElementById("editQuantidade").value = colunas[4].textContent;
+        document.getElementById("editTipoCapa").value = colunas[5].textContent.toUpperCase();
+        document.getElementById("editFormato").value = colunas[6].textContent.toUpperCase();
+        document.getElementById("editCategoria").value = colunas[7].textContent.toUpperCase();
+        document.getElementById("editStatus").value = colunas[8].textContent.toUpperCase();
+
+        // Abre o modal
+        document.getElementById("modalLivro").style.display = "block";
+    });
+});
+
+// Remoção da linha ao clicar no botão "Remover"
+document.getElementById("Remover").addEventListener("click", () => {
+    if (linhaSelecionada) {
+        linhaSelecionada.remove();
+        linhaSelecionada = null;
+
+        // Fecha o modal
+        document.getElementById("modalLivro").style.display = "none";
+    }
 });
