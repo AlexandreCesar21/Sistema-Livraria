@@ -193,3 +193,62 @@ document.getElementById("Remover").addEventListener("click", () => {
         document.getElementById("modalLivro").style.display = "none";
     }
 });
+
+
+
+let livrosSalvos = [];
+
+// Salvar dados no localStorage
+function salvarLivrosLocalStorage() {
+    livrosSalvos = [];
+    document.querySelectorAll("#livrosTable tbody tr").forEach((linha) => {
+        const colunas = linha.querySelectorAll("td");
+        const livro = {
+            titulo: colunas[0].textContent,
+            valor: colunas[1].textContent,
+            autor: colunas[2].textContent,
+            editora: colunas[3].textContent,
+            quantidade: colunas[4].textContent,
+            tipoCapa: colunas[5].textContent,
+            formato: colunas[6].textContent,
+            categoria: colunas[7].textContent,
+            status: colunas[8].textContent
+        };
+        livrosSalvos.push(livro);
+    });
+    localStorage.setItem("livros", JSON.stringify(livrosSalvos));
+}
+
+// Carregar dados do localStorage
+function carregarLivrosLocalStorage() {
+    const dados = localStorage.getItem("livros");
+    if (dados) {
+        livrosSalvos = JSON.parse(dados);
+        const tabela = document.querySelector("#livrosTable tbody");
+        tabela.innerHTML = ""; // limpa a tabela antes de preencher
+        livrosSalvos.forEach((livro) => {
+            const novaLinha = tabela.insertRow();
+            novaLinha.innerHTML = `
+                <td>${livro.titulo}</td>
+                <td>${livro.valor}</td>
+                <td>${livro.autor}</td>
+                <td>${livro.editora}</td>
+                <td>${livro.quantidade}</td>
+                <td>${livro.tipoCapa}</td>
+                <td>${livro.formato}</td>
+                <td>${livro.categoria}</td>
+                <td>${livro.status}</td>
+            `;
+            novaLinha.addEventListener("click", function () {
+                linhaSelecionada = this;
+                preencherFormularioComLinha(this);
+            });
+        });
+    }
+}
+
+// Salva ao sair da página
+window.addEventListener("beforeunload", salvarLivrosLocalStorage);
+
+// Carrega ao abrir a página
+window.addEventListener("load", carregarLivrosLocalStorage);
