@@ -2,20 +2,37 @@ let linhaSelecionada = null;
 
 // Função para cadastrar
 document.querySelector(".button-cadast").addEventListener("click", function () {
-    // Apenas realiza o cadastro se não há linha selecionada para edição
     const tabela = document.querySelector("#livrosTable tbody");
 
+    // Coletar os valores dos campos
+    const titulo = getValue("input[placeholder='Titulo']");
+    const valor = getValue("input[placeholder='Valor do livro']");
+    const autor = getValue("input[placeholder='Nome do autor']");
+    const editora = getValue("input[placeholder='Nome da editora']");
+    const quantidade = getValue("input[placeholder='Quantidade do livro']");
+    const tipoCapa = getValue("#tipoCapa");
+    const formato = getValue("#formato");
+    const categoria = getValue("#categoria");
+    const status = getValue("#status");
+
+    // Verificar se algum campo está vazio
+    if (!titulo || !valor || !autor || !editora || !quantidade || !tipoCapa || !formato || !categoria || !status) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+    }
+
+    // Criar a nova linha na tabela
     const novaLinha = tabela.insertRow();
     novaLinha.innerHTML = `
-        <td>${getValue("input[placeholder='Titulo']")}</td>
-        <td>${getValue("input[placeholder='Valor do livro']")}</td>
-        <td>${getValue("input[placeholder='Nome do autor']")}</td>
-        <td>${getValue("input[placeholder='Nome da editora']")}</td>
-        <td>${getValue("input[placeholder='Quantidade do livro']")}</td>
-        <td>${getValue("#tipoCapa")}</td>
-        <td>${getValue("#formato")}</td>
-        <td>${getValue("#categoria")}</td>
-        <td>${getValue("#status")}</td>
+        <td>${titulo}</td>
+        <td>${valor}</td>
+        <td>${autor}</td>
+        <td>${editora}</td>
+        <td>${quantidade}</td>
+        <td>${tipoCapa}</td>
+        <td>${formato}</td>
+        <td>${categoria}</td>
+        <td>${status}</td>
     `;
 
     novaLinha.addEventListener("click", function () {
@@ -24,15 +41,8 @@ document.querySelector(".button-cadast").addEventListener("click", function () {
     });
 
     limparFormulario();
-    linhaSelecionada = null;  // Desmarcar qualquer linha de edição após o cadastro
+    linhaSelecionada = null; // Desmarcar qualquer linha de edição após o cadastro
 });
-
-
-
-
-
-
-
 
 // Função para atualizar
 document.querySelector(".Atualizar").addEventListener("click", function () {
@@ -61,10 +71,8 @@ function getValue(selector) {
 }
 
 function preencherFormularioComLinha(linha) {
-    // Limpar o formulário de cadastro para garantir que não apareçam dados antigos
     limparFormulario();
 
-    // Preencher os campos do formulário de cadastro com os dados da linha clicada
     document.querySelector("input[placeholder='Titulo']").value = linha.cells[0].innerText;
     document.querySelector("input[placeholder='Valor do livro']").value = linha.cells[1].innerText;
     document.querySelector("input[placeholder='Nome do autor']").value = linha.cells[2].innerText;
@@ -75,13 +83,11 @@ function preencherFormularioComLinha(linha) {
     document.querySelector("#categoria").value = linha.cells[7].innerText;
     document.querySelector("#status").value = linha.cells[8].innerText;
 
-    // Esconder o formulário de cadastro e mostrar o modal
     document.querySelector(".form-cadastro").style.display = "none";
     modal.style.display = "flex";
 }
 
 function limparFormulario() {
-    // Limpar todos os campos de entrada do formulário
     document.querySelectorAll("input[type='text']").forEach(input => input.value = "");
     document.querySelectorAll("select").forEach(select => select.value = "");
 }
@@ -99,10 +105,8 @@ document.querySelector("#livrosTable tbody").addEventListener("click", function 
 
     linhaSelecionada = linha;
 
-    // Limpar o formulário de cadastro antes de preencher o modal com os dados da linha selecionada
     limparFormulario();
 
-    // Preencher os campos do modal com os dados da linha
     document.getElementById("editTitulo").value = linha.cells[0].innerText;
     document.getElementById("editValor").value = linha.cells[1].innerText;
     document.getElementById("editAutor").value = linha.cells[2].innerText;
@@ -113,11 +117,8 @@ document.querySelector("#livrosTable tbody").addEventListener("click", function 
     document.getElementById("editCategoria").value = linha.cells[7].innerText;
     document.getElementById("editStatus").value = linha.cells[8].innerText;
 
-    // Mostrar o modal
     modal.style.display = "flex";
 });
-
-
 
 // Botão SALVAR no modal
 btnSalvar.addEventListener("click", () => {
@@ -133,10 +134,8 @@ btnSalvar.addEventListener("click", () => {
         linhaSelecionada.cells[8].innerText = document.getElementById("editStatus").value;
 
         modal.style.display = "none";
-        linhaSelecionada = null; // Limpar a seleção
-        // Mostrar novamente o formulário de cadastro
+        linhaSelecionada = null;
         document.querySelector(".form-cadastro").style.display = "block";
-        // Limpar formulário de cadastro
         limparFormulario();
     }
 });
@@ -144,43 +143,13 @@ btnSalvar.addEventListener("click", () => {
 // Botão FECHAR ou X no modal
 fecharModal.addEventListener("click", () => {
     modal.style.display = "none";
-    // Limpar o formulário de cadastro ao fechar o modal
     limparFormulario();
-    // Mostrar novamente o formulário de cadastro
     document.querySelector(".form-cadastro").style.display = "block";
 });
 closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
-    // Limpar o formulário de cadastro ao fechar o modal
     limparFormulario();
-    // Mostrar novamente o formulário de cadastro
     document.querySelector(".form-cadastro").style.display = "block";
-});
-
-
-
-
-// Quando clicar em uma linha da tabela
-document.querySelectorAll("#livrosTable tbody tr").forEach((linha) => {
-    linha.addEventListener("click", () => {
-        linhaSelecionada = linha; // salva a referência da linha selecionada
-
-        const colunas = linha.querySelectorAll("td");
-
-        // Preenche os campos do modal com os valores da linha
-        document.getElementById("editTitulo").value = colunas[0].textContent;
-        document.getElementById("editValor").value = colunas[1].textContent;
-        document.getElementById("editAutor").value = colunas[2].textContent;
-        document.getElementById("editEditora").value = colunas[3].textContent;
-        document.getElementById("editQuantidade").value = colunas[4].textContent;
-        document.getElementById("editTipoCapa").value = colunas[5].textContent.toUpperCase();
-        document.getElementById("editFormato").value = colunas[6].textContent.toUpperCase();
-        document.getElementById("editCategoria").value = colunas[7].textContent.toUpperCase();
-        document.getElementById("editStatus").value = colunas[8].textContent.toUpperCase();
-
-        // Abre o modal
-        document.getElementById("modalLivro").style.display = "block";
-    });
 });
 
 // Remoção da linha ao clicar no botão "Remover"
@@ -188,13 +157,9 @@ document.getElementById("Remover").addEventListener("click", () => {
     if (linhaSelecionada) {
         linhaSelecionada.remove();
         linhaSelecionada = null;
-
-        // Fecha o modal
-        document.getElementById("modalLivro").style.display = "none";
+        modal.style.display = "none";
     }
 });
-
-
 
 let livrosSalvos = [];
 
@@ -225,7 +190,7 @@ function carregarLivrosLocalStorage() {
     if (dados) {
         livrosSalvos = JSON.parse(dados);
         const tabela = document.querySelector("#livrosTable tbody");
-        tabela.innerHTML = ""; // limpa a tabela antes de preencher
+        tabela.innerHTML = "";
         livrosSalvos.forEach((livro) => {
             const novaLinha = tabela.insertRow();
             novaLinha.innerHTML = `
