@@ -4,7 +4,6 @@ let linhaSelecionada = null;
 document.querySelector(".button-cadast").addEventListener("click", function () {
     const tabela = document.querySelector("#livrosTable tbody");
 
-    // Coletar os valores dos campos
     const titulo = getValue("input[placeholder='Titulo']");
     const valor = getValue("input[placeholder='Valor do livro']");
     const autor = getValue("input[placeholder='Nome do autor']");
@@ -15,13 +14,11 @@ document.querySelector(".button-cadast").addEventListener("click", function () {
     const categoria = getValue("#categoria");
     const status = getValue("#status");
 
-    // Verificar se algum campo está vazio
     if (!titulo || !valor || !autor || !editora || !quantidade || !tipoCapa || !formato || !categoria || !status) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    // Criar a nova linha na tabela
     const novaLinha = tabela.insertRow();
     novaLinha.innerHTML = `
         <td>${titulo}</td>
@@ -35,16 +32,18 @@ document.querySelector(".button-cadast").addEventListener("click", function () {
         <td>${status}</td>
     `;
 
+    corStatus(novaLinha.cells[8], status);
+
     novaLinha.addEventListener("click", function () {
         linhaSelecionada = this;
         preencherFormularioComLinha(this);
     });
 
     limparFormulario();
-    linhaSelecionada = null; // Desmarcar qualquer linha de edição após o cadastro
+    linhaSelecionada = null;
 });
 
-// Função para atualizar
+// Função para atualizar (form principal)
 document.querySelector(".Atualizar").addEventListener("click", function () {
     if (linhaSelecionada) {
         linhaSelecionada.cells[0].innerText = getValue("input[placeholder='Titulo']");
@@ -57,7 +56,8 @@ document.querySelector(".Atualizar").addEventListener("click", function () {
         linhaSelecionada.cells[7].innerText = getValue("#categoria");
         linhaSelecionada.cells[8].innerText = getValue("#status");
 
-        // Limpar a seleção após atualizar
+        corStatus(linhaSelecionada.cells[8], linhaSelecionada.cells[8].innerText);
+
         linhaSelecionada = null;
         limparFormulario();
     } else {
@@ -65,7 +65,7 @@ document.querySelector(".Atualizar").addEventListener("click", function () {
     }
 });
 
-// Funções auxiliares
+// Função auxiliar para pegar valores
 function getValue(selector) {
     return document.querySelector(selector).value;
 }
@@ -92,19 +92,17 @@ function limparFormulario() {
     document.querySelectorAll("select").forEach(select => select.value = "");
 }
 
-// Modal para editar
+// Modal de edição
 const modal = document.getElementById("modalLivro");
 const closeBtn = document.querySelector(".close-button");
 const fecharModal = document.getElementById("btnFechar");
 const btnSalvar = document.getElementById("btnSalvar");
 
-// Quando clica em uma linha da tabela
 document.querySelector("#livrosTable tbody").addEventListener("click", function (e) {
     const linha = e.target.closest("tr");
     if (!linha) return;
 
     linhaSelecionada = linha;
-
     limparFormulario();
 
     document.getElementById("editTitulo").value = linha.cells[0].innerText;
@@ -120,7 +118,7 @@ document.querySelector("#livrosTable tbody").addEventListener("click", function 
     modal.style.display = "flex";
 });
 
-// Botão SALVAR no modal
+// Botão SALVAR do modal
 btnSalvar.addEventListener("click", () => {
     if (linhaSelecionada) {
         linhaSelecionada.cells[0].innerText = document.getElementById("editTitulo").value;
@@ -133,6 +131,8 @@ btnSalvar.addEventListener("click", () => {
         linhaSelecionada.cells[7].innerText = document.getElementById("editCategoria").value;
         linhaSelecionada.cells[8].innerText = document.getElementById("editStatus").value;
 
+        corStatus(linhaSelecionada.cells[8], linhaSelecionada.cells[8].innerText);
+
         modal.style.display = "none";
         linhaSelecionada = null;
         document.querySelector(".form-cadastro").style.display = "block";
@@ -140,7 +140,7 @@ btnSalvar.addEventListener("click", () => {
     }
 });
 
-// Botão FECHAR ou X no modal
+// Botão FECHAR ou X
 fecharModal.addEventListener("click", () => {
     modal.style.display = "none";
     limparFormulario();
@@ -152,7 +152,7 @@ closeBtn.addEventListener("click", () => {
     document.querySelector(".form-cadastro").style.display = "block";
 });
 
-// Remoção da linha ao clicar no botão "Remover"
+// Botão Remover
 document.getElementById("Remover").addEventListener("click", () => {
     if (linhaSelecionada) {
         linhaSelecionada.remove();
@@ -204,6 +204,7 @@ function carregarLivrosLocalStorage() {
                 <td>${livro.categoria}</td>
                 <td>${livro.status}</td>
             `;
+            corStatus(novaLinha.cells[8], livro.status);
             novaLinha.addEventListener("click", function () {
                 linhaSelecionada = this;
                 preencherFormularioComLinha(this);
@@ -212,25 +213,44 @@ function carregarLivrosLocalStorage() {
     }
 }
 
-// Salva ao sair da página
 window.addEventListener("beforeunload", salvarLivrosLocalStorage);
-
-// Carrega ao abrir a página
 window.addEventListener("load", carregarLivrosLocalStorage);
 
-
-
-// Função de busca de livros
+// Busca
 document.getElementById("buscarLivro").addEventListener("input", function () {
-    const termoBusca = this.value.toLowerCase(); // texto digitado
+    const termoBusca = this.value.toLowerCase();
     const linhas = document.querySelectorAll("#livrosTable tbody tr");
 
     linhas.forEach((linha) => {
-        const textoLinha = linha.innerText.toLowerCase(); // conteúdo da linha
-        if (textoLinha.includes(termoBusca)) {
-            linha.style.display = ""; // mostra a linha
-        } else {
-            linha.style.display = "none"; // esconde a linha
-        }
+        const textoLinha = linha.innerText.toLowerCase();
+        linha.style.display = textoLinha.includes(termoBusca) ? "" : "none";
     });
 });
+
+// === FUNÇÃO corStatus ===
+function corStatus(td, statusValue) {
+    switch (statusValue.toLowerCase()) {
+        case 'disponível':
+            td.style.backgroundColor = '#8de02c';
+            break;
+        case 'emprestado':
+            td.style.backgroundColor = '#87cefa';
+            break;
+        case 'esgotado':
+            td.style.backgroundColor = '#f8d7da';
+            break;
+        case 'danificado':
+            td.style.backgroundColor = '#d32e2e';
+            break;
+        case 'reservado':
+            td.style.backgroundColor = '#ffd700';
+            break;
+        case 'removido':
+            td.style.backgroundColor = '#e2e3e5';
+            break;
+        default:
+            td.style.backgroundColor = '#ffffff';
+    }
+    td.style.color = 'black';
+    td.style.fontWeight = '900';
+}
