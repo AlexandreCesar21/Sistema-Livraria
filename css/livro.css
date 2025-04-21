@@ -234,7 +234,7 @@ form {
 
 label {
     font-size: 21px;
-    color: var(--black1);
+    color: var(--blue);
     margin-bottom: 10px;
     font-weight: 500;
     text-align: left;
@@ -326,8 +326,9 @@ option {
     color: var(--black1);
     margin-bottom: 10px;
     font-weight: 500;
-    text-align: left;
+    text-align: left; 
     margin: 1px;
+    
 }
 
 .button-devs {
