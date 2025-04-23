@@ -396,7 +396,7 @@ main .form-livro {
     border-radius: 12px;
   }
 
-  .tarefa h3 {
+  .tarefa h2 {
     margin: 20px;
   }
 
@@ -413,6 +413,7 @@ main .form-livro {
         justify-content: left;
         align-items: center;
         margin-top: 20px;
+        color: var(--blue);
     }
 
 
