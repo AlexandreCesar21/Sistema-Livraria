@@ -444,11 +444,12 @@ main .form-livro {
     bottom: 10px;
   }
 
+  .tarefa.concluida {
+    background-color: #e0e0e0; /* cinza claro */
+    opacity: 0.8;
+}
 
-  .button-concluir{
-    
-  }
-
-  .button-excluir {
-    
-  }
+.tarefa.concluida h2 {
+    text-decoration: line-through;
+    color: #666;
+}
