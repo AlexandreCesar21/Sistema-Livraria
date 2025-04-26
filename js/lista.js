@@ -61,6 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         listaTarefa.appendChild(novaTarefa);
+
+        setTimeout(() => {
+            novaTarefa.classList.add("added");
+        }, 10); 
     }
 
     function salvarTarefa(nome, funcionario) {

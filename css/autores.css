@@ -91,9 +91,11 @@
     text-align: start;
     white-space: nowrap;
   }
- /* ------- Navigation -------- */
 
- /* --------- curve outside ---------- */
+  /* ------- Navigation -------- */
+
+
+  /* --------- curve outside ---------- */
 .navigation ul li:hover a::before,
 .navigation ul li.hovered a::before {
   content: "";
@@ -121,76 +123,3 @@
   pointer-events: none;
 }
 /* --------- curve outside ---------- */
-
-
-
-/* =============== Main ============== */
-main {
-  position: absolute;
-  top: 0;
-  left: 250px;
-  width: calc(100% - 300px);
-  height: 100%;
-  transition: 0.5s;
-  text-align: center;
-  top: 100px;
-  position: relative;
-  overflow: hidden;
-}
-
-
-.titulo {
-  font-size: 2rem;
-  color: var(--blue);
-  margin-bottom: 20px;
-  text-align: left;
-  position: relative;
-  left: 200px;
-}	
-
-.informacoes {
-  font-size: 1em;
-  text-align: left;
-  left: 200px;
-  position: relative;
-}
-
-
-footer {
-  padding: 40px 0;
-  font-size: 16px;
-
-}
-
-.titulo-1 {
-  font-size: 1.4em;
-  color: var(--blue);
-  margin-bottom: 20px;
-  text-align: center;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  top: 120px;
-}
-
-
-
-.informacoes-footer-1 {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    top: 150px;
-  }
-
-  .info-section {
-    text-align: center;
-    justify-items: left;
-    width: 30%;
-    margin-bottom: 20px;
-    text-align: center;
-    padding: 15px;
-    color: var(--blue);
-  }
