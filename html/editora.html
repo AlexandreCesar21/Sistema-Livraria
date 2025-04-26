@@ -90,11 +90,11 @@
                 <div class="user"><img src="../img/image copy.png" alt="" /></div>
             </div>        
             <div class="form-livro-header">
-                <h1>CADASTRE UM AUTOR</h1>
+                <h1>CADASTRE UMA EDITORA</h1>
             </div>
             <form onsubmit="return false;">
                 <div class="form-livro-1">
-                    <label for="autor">Autor:</label>
+                    <label for="autor">Editora:</label>
                     <input id="autor" type="text" placeholder="Autor" required />
                 </div>
                 <div class="form-livro-2">
@@ -114,9 +114,46 @@
                 </div>
             </form>
         </div>
+        <section class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>LIVROS</h2>
+                </div>
+                
+                <div class="selecoes">
+                    <div class="search">
+                        <label>
+                            <input type="text"  id="buscarLivro" placeholder="Procurar Autor">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="botoes-infr">
+                        <label style="display: none;">
+                            <input type="button" value="Atualizar" class="Atualizar">
+                        </label>
+                        <label for="" style="display: none;">
+                            <input type="button" value="Remover" class="Deletar">
+                        </label>
+                    </div>
+                </div>
 
-        <section>
-            
+                <table id="livrosTable">
+                    <thead>
+                        <tr>
+                            <td class="autor">Editora</td>
+                            <td class="codigo">Código</td>
+                            <td class="status">Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="Autor">Maicon</td>
+                            <td class="Código">5265241641694165</td>
+                            <td class="status">Ativo</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
         </section>
     </main>
 

@@ -110,19 +110,57 @@
                     </select>
                 </div>
                 <div class="button-devs">
-                    <input type="button" value="CADASTRE" class="button-cadast" />
+                    <input type="button" value="CADASTRE" class="button-cadast"  />
                 </div>
             </form>
         </div>
 
-        <section>
-            
+        <section class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Autores</h2>
+                </div>
+                
+                <div class="selecoes">
+                    <div class="search">
+                        <label>
+                            <input type="text"  id="buscarLivro" placeholder="Procurar Autor">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="botoes-infr">
+                        <label style="display: none;">
+                            <input type="button" value="Atualizar" class="Atualizar">
+                        </label>
+                        <label for="" style="display: none;">
+                            <input type="button" value="Remover" class="Deletar">
+                        </label>
+                    </div>
+                </div>
+
+                <table id="autoresTable">
+                    <thead>
+                        <tr>
+                            <td class="autor">Autor</td>
+                            <td class="codigo">Código</td>
+                            <td class="status">Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="autor">Maicon</td>
+                            <td class="codigo">5265241641694165</td>
+                            <td class="status">ATIVO</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
         </section>
     </main>
 
     
     <script src="../js/index.js"></script>
-
+    <script src="../js/autor.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
