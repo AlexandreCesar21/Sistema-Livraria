@@ -6,6 +6,36 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/user.css">
 </head>
+
+<div id="modalUsario" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" style="display: none;">&times;</span>
+        <h2>Editar Livro</h2>
+        <form id="formEditarLivro">
+            <div class="modal-header">
+
+                <label>Usúario:</label>
+                <input type="text" id="editUsuario"><br>
+                
+                <label>Senha:</label>
+                <input type="text" id="editSenha"><br>
+
+            </div>
+
+            
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnFechar">Fechar</button>
+                <button type="button" id="Remover">Remover</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
 <body>
     <nav class="navigation">
         <ul>
@@ -94,12 +124,12 @@
             </div>
             <form onsubmit="return false;">
                 <div class="form-livro-1">
-                    <label for="autor">Autor:</label>
-                    <input id="autor" type="text" placeholder="Autor" required />
+                    <label for="usuario">Usúario:</label>
+                    <input id="usuario" type="text" placeholder="usuario" required />
                 </div>
                 <div class="form-livro-2">
-                    <label for="funcionario">Senha:</label>
-                    <input id="codigo" type="text" placeholder="Codigo" required />
+                    <label for="Senha">Senha:</label>
+                    <input id="senha" type="text" placeholder="Senha" required />
                 </div>
                 <div class="button-devs">
                     <input type="button" value="CADASTRE" class="button-cadast" />
@@ -107,14 +137,46 @@
             </form>
         </div>
 
-        <section>
-            
+        <section class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>USÚARIO</h2>
+                </div>
+                
+                <div class="selecoes">
+                    <div class="search">
+                        <label>
+                            <input type="text"  id="buscarUsuario" placeholder="Procurar Usuario">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="botoes-infr">
+                        <label style="display: none;">
+                            <input type="button" value="Atualizar" class="Atualizar">
+                        </label>
+                        <label for="" style="display: none;">
+                            <input type="button" value="Remover" class="Deletar">
+                        </label>
+                    </div>
+                </div>
+
+                <table id="usuarioTable">
+                    <thead>
+                        <tr>
+                            <td class="usuario">Usúario</td>
+                            <td class="senha">Senha</td>
+                        </tr>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                
         </section>
     </main>
 
     
     <script src="../js/index.js"></script>
-
+    <script src="../js/user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
