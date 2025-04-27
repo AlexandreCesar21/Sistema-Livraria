@@ -6,6 +6,44 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/editora.css">
 </head>
+
+<div id="modalEditora" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" style="display: none;">&times;</span>
+        <h2>Editar Livro</h2>
+        <form id="formEditarLivro">
+            <div class="modal-header">
+                <label>Editora:</label>
+                <input type="text" id="editEditora"><br>
+                
+                <label>Código:</label>
+                <input type="text" id="editCodigo"><br>
+
+            </div>
+        
+
+            <div class="modal-footer">
+    
+                <label>Status:</label>
+                <select id="editStatus" required>
+                    <option value="">Selecione o Status</option>
+                    <option value="ATIVO">ATIVO</option>
+                    <option value="INATIVO">INATIVO</option>
+                </select>
+            </div>
+
+            
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnFechar">Fechar</button>
+                <button type="button" id="Remover">Remover</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <body>
     <nav class="navigation">
         <ul>
@@ -94,11 +132,11 @@
             </div>
             <form onsubmit="return false;">
                 <div class="form-livro-1">
-                    <label for="autor">Editora:</label>
-                    <input id="autor" type="text" placeholder="Autor" required />
+                    <label for="editora">Editora:</label>
+                    <input id="editora" type="text" placeholder="Editora" required />
                 </div>
                 <div class="form-livro-2">
-                    <label for="funcionario">Código:</label>
+                    <label for="codigo">Código:</label>
                     <input id="codigo" type="text" placeholder="Codigo" required />
                 </div>
                 <div class="form-livro-2">
@@ -117,13 +155,13 @@
         <section class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>LIVROS</h2>
+                    <h2>EDITORAS</h2>
                 </div>
                 
                 <div class="selecoes">
                     <div class="search">
                         <label>
-                            <input type="text"  id="buscarLivro" placeholder="Procurar Autor">
+                            <input type="text"  id="buscarEditora" placeholder="Procurar Editoras">
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
                     </div>
@@ -137,18 +175,18 @@
                     </div>
                 </div>
 
-                <table id="livrosTable">
+                <table id="editoraTable">
                     <thead>
                         <tr>
-                            <td class="autor">Editora</td>
+                            <td class="editora">Editora</td>
                             <td class="codigo">Código</td>
                             <td class="status">Status</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="Autor">Maicon</td>
-                            <td class="Código">5265241641694165</td>
+                            <td class="editora">Maicon</td>
+                            <td class="codigo">5265241641694165</td>
                             <td class="status">Ativo</td>
                         </tr>
                     </tbody>
@@ -159,7 +197,7 @@
 
     
     <script src="../js/index.js"></script>
-
+    <script src="../js/editora.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
