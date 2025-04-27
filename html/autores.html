@@ -6,6 +6,47 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/autores.css">
 </head>
+
+
+<div id="modalAutor" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" style="display: none;">&times;</span>
+        <h2>Editar Livro</h2>
+        <form id="formEditarLivro">
+            <div class="modal-header">
+                <label>Autor:</label>
+                <input type="text" id="editAutor"><br>
+                
+                <label>Código:</label>
+                <input type="text" id="editcodigo"><br>
+
+            </div>
+        
+
+            <div class="modal-footer">
+    
+                <label>Status:</label>
+                <select id="editstatus" required>
+                    <option value="">Selecione o Status</option>
+                    <option value="ATIVO">ATIVO</option>
+                    <option value="INATIVO">INATIVO</option>
+                </select>
+            </div>
+
+            
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnFechar">Fechar</button>
+                <button type="button" id="Remover">Remover</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
 <body>
     <nav class="navigation">
         <ul>
@@ -124,7 +165,7 @@
                 <div class="selecoes">
                     <div class="search">
                         <label>
-                            <input type="text"  id="buscarLivro" placeholder="Procurar Autor">
+                            <input type="text"  id="buscarAutor" placeholder="Procurar Autor">
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
                     </div>
@@ -147,11 +188,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="autor">Maicon</td>
-                            <td class="codigo">5265241641694165</td>
-                            <td class="status">ATIVO</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 
