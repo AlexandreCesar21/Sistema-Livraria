@@ -320,8 +320,8 @@ main .form-livro {
   }
   
   .button-cadast { 
-    width: 25%;
-    height: 90%;
+    width: auto;
+    height: auto;
     background-color: var(--blue);
     color: #f5f5f5;
     font-weight: 900;
@@ -460,8 +460,10 @@ main .form-livro {
     align-items: right;
     margin-top: 20px;
     padding: 3px;
-    left: 44rem;
     bottom: 0.8rem;
+    left: 12rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .buttons button {
@@ -496,4 +498,5 @@ main .form-livro {
   flex-direction: column; /* Garante que as tarefas fiquem uma abaixo da outra */
   gap: 60px; /* Espaçamento entre as tarefas */
 }
+
 
