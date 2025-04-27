@@ -159,7 +159,6 @@ main {
 footer {
   padding: 40px 0;
   font-size: 16px;
-
 }
 
 .titulo-1 {
@@ -168,8 +167,6 @@ footer {
   margin-bottom: 20px;
   text-align: center;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
   top: 120px;
 }
 
@@ -183,6 +180,7 @@ footer {
     margin: 0 auto;
     position: relative;
     top: 150px;
+    margin-right: 20px;
   }
 
   .info-section {
@@ -193,4 +191,6 @@ footer {
     text-align: center;
     padding: 15px;
     color: var(--blue);
+    left: -70px;
   }
+
