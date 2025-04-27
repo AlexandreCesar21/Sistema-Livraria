@@ -308,8 +308,6 @@ main .form-livro {
 
   .button-devs {
     text-align: center;
-    height: 50px;
-    width: 80%;
     padding-top: 70px;
     margin-left: auto;
     margin-right: auto;
@@ -318,12 +316,12 @@ main .form-livro {
   }
   
   .button-cadast { 
-    width: 25%;
-    height: 90%;
+    height: auto;
+    width: auto;
     background-color: var(--blue);
     color: #f5f5f5;
     font-weight: 900;
-    font-size: 1.4em;
+    font-size: 1.8em;
   
   }
   
