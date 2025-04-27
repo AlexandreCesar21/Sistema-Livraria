@@ -173,3 +173,4 @@ document.getElementById("Remover").addEventListener("click", function () {
 
 
 
+console.log(window.innerWidth, window.innerHeight);

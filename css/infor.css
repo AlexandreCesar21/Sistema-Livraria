@@ -194,3 +194,14 @@ footer {
     left: -70px;
   }
 
+
+
+  @media (min-width: 1920px){
+    /* Seu CSS aqui */
+   .informacoes-footer-1 {
+    margin-right: 320px;
+   }
+
+}
+
+  
