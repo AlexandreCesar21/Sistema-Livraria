@@ -111,6 +111,30 @@
     overflow: hidden;
   }
 
+  .button-isbn {
+    display: flex;
+    text-align: left;
+    justify-items: left;
+    position: relative;
+    right: 50px;
+    }
+
+
+  .button-isbn button {
+    width: 10%;
+    height: 40%;
+    background-color: var(--blue);
+    color: #f5f5f5;
+    font-weight: 900;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 40px;
+  }
+
+  .button-isbn button:hover {
+    background-color: #410808d6;
+  }
+  
 
   main.active {
     width: calc(100% - 80px);
@@ -644,10 +668,18 @@ option {
   text-align: center;
   max-height: 90vh; /* Evita que o conteúdo do modal passe da tela */
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal-content h2 {
   margin-top: 0;
+  color: var(--blue);
+}
+
+.modal .modal-content form {
+  width: 100%;
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.116);
+
 }
 
 .modal-buttons {
@@ -770,3 +802,157 @@ option {
 
 
 
+
+/* ---------- MODAL-ISBN ----------  */
+
+
+
+.modal-isbn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  /* Garante que overflow do conteúdo não estoure a tela */
+  overflow-y: auto;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.modal-isbn-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 900px;
+  max-width: 90%;
+  position: relative;
+
+  /* Suavidade no centro */
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+  max-height: 90vh; /* Evita que o conteúdo do modal passe da tela */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.modal-isbn-content h2 {
+  margin-top: 0;
+  color: var(--blue);
+}
+
+
+.modal-isbn .modal-isbn-content form {
+  width: 100%;
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.116);
+
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.modal-buttons button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+.form-editar-livro {
+  text-align: center;
+}
+
+.modal-isbn-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+
+.modal-isbn-header input{
+  width: 100px;
+  position: relative;
+  right: 5px;
+  margin: 10px;
+}
+
+
+
+.modal-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 10px
+}
+
+.modal-body label {
+  position: relative;
+  left: 7px;
+  white-space: nowrap;
+  margin-right: 42px;
+}
+
+.modal-body input {
+  width: 100px;
+  position: relative;
+  right: 14px;
+}
+
+#edit {
+  position: relative;
+  left: 30px;
+}
+
+.modal-body > #editTipoCapa {
+  position: relative;
+  top: 1px;
+  right: 40px;
+  width: 300px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  margin-left: 30px;
+
+  background-color: var(--blue);
+  color: #f5f5f5;
+  font-weight: 900;
+  font-size: 1.4em;
+
+    width: 19%;
+    height: 36px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    font-size: 17px;
+    outline: none;
+    border: 1px solid var(--black2);
+    margin-bottom: 20px;
+    margin: 8px;
+}
+
+.modal-buttons button:hover {
+  background-color: #41080880;
+}

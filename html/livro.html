@@ -14,7 +14,7 @@
 <div id="modalLivro" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button" style="display: none;">&times;</span>
-        <h2>Editar Livro</h2>
+        <h2>EDITAR LIVRO</h2>
         <form id="formEditarLivro">
             <div class="modal-header">
                 <label>Titulo:</label>
@@ -87,6 +87,88 @@
         </form>
     </div>
 </div>
+
+<div id="modalIsbn" class="modal-isbn" style="display: none;">
+    <div class="modal-isbn-content">
+        <span class="close-button" style="display: none;">&times;</span>
+        <h2>CADASTRO ISBN</h2>
+        <form id="formEditarLivro">
+            <div class="modal-isbn-header">
+                <label>ISBN:</label>
+                <input type="text" id="editTitulo"><br>
+                
+                <label>Titulo:</label>
+                <input type="text" id="editTitulo"><br>
+                
+                <label>Valor:</label>
+                <input type="text" id="editValor"><br>
+                
+                <label>Autor:</label>
+                <input type="text" id="editAutor"><br>
+            </div>
+            
+            <div class="modal-body">
+                <label id="edit">Editora:</label>
+                <input type="text" id="editEditora"><br>
+                
+                <label id="edit">Quantidade:</label>
+                <input type="text" id="editQuantidade"><br>
+                
+                <label>Tipo Capa:</label>
+                <select name="tipoCapa" id="editTipoCapa">
+                    <option value="" disabled selected></option>
+                    <option value="DURA">DURA</option>
+                    <option value="MOLDA">MOLDA</option>
+                    <option value="BROCHURA">BROCHURA</option>
+                </select><br>
+
+            </div>
+
+            <div class="modal-footer">
+                <label>Formato:</label>
+                <select name="formato" id="editFormato">
+                    <option value="" disabled selected></option>
+                    <option value="FISICO">FISICO</option>
+                    <option value="DIGITAL">DIGITAL</option>
+                    <option value="AUDIO">AUDIO</option>
+                </select><br>
+                
+                <label>Categoria:</label>
+                <select name="categoria" id="editCategoria">
+                    <option value="" disabled selected></option>
+                    <option value="FICÇÃO" >FICÇÃO</option>
+                    <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
+                    <option value="AUTO AJUDA">AUTO AJUDA</option>
+                    <option value="TERROR">TERROR</option>
+                    <option value="ROMANCE">ROMANCE</option>
+                    <option value="BIOGRAFIA">BIOGRAFIA</option>
+                    <option value="INFANTIL">INFANTIL</option>  
+                </select><br>
+    
+                <label>Status:</label>
+                <select name="status" id="editStatus">
+                    <option value="" disabled selected ></option>
+                    <option value="EMPRESTADO" >EMPRESTADO</option>
+                    <option value="DISPONÍVEL">DISPONÍVEL</option>
+                    <option value="ESGOTADO">ESGOTADO</option>
+                    <option value="DANIFICADO">DANIFICADO </option>
+                    <option value="RESERVADO">RESERVADO </option>
+                    <option value="REMOVIDO">REMOVIDO</option>
+                </select>
+            </div>
+
+            
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">CADASTRE</button>
+                <button type="button" id="btnFechar">FECHAR</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 
 <body>
     <nav class="navigation">
@@ -237,9 +319,12 @@
                 </div>
                 <div class="button-devs">
                     <input type="button" value="Cadastrar" class="button-cadast" >
+                    
+                        <div class="button-isbn">
+                            <button id="button-isbn">ISBN</button>
+                    </div>
                 </div>
             </form>
-            
         </div>
 
 
@@ -270,6 +355,7 @@
                 <table id="livrosTable">
                     <thead>
                         <tr>
+
                             <td class="titulo">Titulo</td>
                             <td class="valor">Valor</td>
                             <td class="Autor">Autor</td>
