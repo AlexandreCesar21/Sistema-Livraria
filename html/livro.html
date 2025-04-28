@@ -95,27 +95,27 @@
         <form id="formEditarLivro">
             <div class="modal-isbn-header">
                 <label>ISBN:</label>
-                <input type="text" id="editTitulo"><br>
+                <input type="text" id="isbnIsbn"><br>
                 
                 <label>Titulo:</label>
-                <input type="text" id="editTitulo"><br>
+                <input type="text" id="isbnTitulo"><br>
                 
                 <label>Valor:</label>
-                <input type="text" id="editValor"><br>
+                <input type="text" id="isbnValor"><br>
                 
                 <label>Autor:</label>
-                <input type="text" id="editAutor"><br>
+                <input type="text" id="isbnAutor"><br>
             </div>
             
             <div class="modal-body">
                 <label id="edit">Editora:</label>
-                <input type="text" id="editEditora"><br>
+                <input type="text" id="isbnEditora"><br>
                 
                 <label id="edit">Quantidade:</label>
-                <input type="text" id="editQuantidade"><br>
+                <input type="text" id="isbnQuantidade"><br>
                 
                 <label>Tipo Capa:</label>
-                <select name="tipoCapa" id="editTipoCapa">
+                <select name="tipoCapa" id="isbnTipoCapa">
                     <option value="" disabled selected></option>
                     <option value="DURA">DURA</option>
                     <option value="MOLDA">MOLDA</option>
@@ -126,7 +126,7 @@
 
             <div class="modal-footer">
                 <label>Formato:</label>
-                <select name="formato" id="editFormato">
+                <select name="formato" id="isbnFormato">
                     <option value="" disabled selected></option>
                     <option value="FISICO">FISICO</option>
                     <option value="DIGITAL">DIGITAL</option>
@@ -134,7 +134,7 @@
                 </select><br>
                 
                 <label>Categoria:</label>
-                <select name="categoria" id="editCategoria">
+                <select name="categoria" id="isbnCategoria">
                     <option value="" disabled selected></option>
                     <option value="FICÇÃO" >FICÇÃO</option>
                     <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
@@ -146,7 +146,7 @@
                 </select><br>
     
                 <label>Status:</label>
-                <select name="status" id="editStatus">
+                <select name="status" id="isbnStatus">
                     <option value="" disabled selected ></option>
                     <option value="EMPRESTADO" >EMPRESTADO</option>
                     <option value="DISPONÍVEL">DISPONÍVEL</option>
@@ -160,8 +160,8 @@
             
 
             <div class="modal-buttons">
-                <button type="button" id="btnSalvar">CADASTRE</button>
-                <button type="button" id="btnFechar">FECHAR</button>
+                <button type="button" id="btnCadastre">CADASTRE</button>
+                <button type="button" id="btnisbnFechar">FECHAR</button>
             </div>
         </form>
     </div>
@@ -355,7 +355,6 @@
                 <table id="livrosTable">
                     <thead>
                         <tr>
-
                             <td class="titulo">Titulo</td>
                             <td class="valor">Valor</td>
                             <td class="Autor">Autor</td>

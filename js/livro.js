@@ -92,6 +92,32 @@ function limparFormulario() {
     document.querySelectorAll("select").forEach(select => select.value = "");
 }
 
+
+// Modal de ISBN
+const modalIsbn = document.getElementById("modalIsbn")
+const isbnFechar = document.getElementById("btnisbnFechar")
+const cadastIsbn = document.getElementById("btnCadastre")
+
+
+document.querySelector("#button-isbn").addEventListener("click", function (e) {
+    const isbn =  e.target.closest("button")
+
+    modalIsbn.style.display = "flex";
+})
+
+// Botão FECHAR ISBN
+isbnFechar.addEventListener("click", () => {
+    modalIsbn.style.display = "none";
+    limparFormulario();
+    
+});
+
+
+// Botão Cadastrar ISBN
+
+
+
+
 // Modal de edição
 const modal = document.getElementById("modalLivro");
 const closeBtn = document.querySelector(".close-button");
