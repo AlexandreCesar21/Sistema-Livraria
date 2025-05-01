@@ -4,11 +4,9 @@ document.querySelector(".button-cadast").addEventListener("click", function () {
     const tabela = document.querySelector("#autoresTable tbody");
 
     const autor = getValue("input[placeholder='Autor']");
-    const codigo = getValue("input[placeholder='Codigo']");
-    const status = getValue("#status");
 
 
-    if (!autor || !codigo || !status) {
+    if (!autor ) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
@@ -16,8 +14,7 @@ document.querySelector(".button-cadast").addEventListener("click", function () {
     const novaLinha = tabela.insertRow();
     novaLinha.innerHTML = `
         <td>${autor}</td>
-        <td>${codigo}</td>
-        <td>${status}</td>
+        
     `;
 
     corStatus(novaLinha.cells[2], status);
@@ -41,14 +38,10 @@ function preencherFormularioComlinha(linha) {
     limparFomrulario();
 
     document.querySelector("input[placeholder='Autor']").value = linha.cells[0].innerText;
-    document.querySelector("input[placeholder='Codigo']").value = linha.cells[1].innerText;
-    document.querySelector("#status").value = linha.cells[2].innerText;
 }
 
 function limparFomrulario() {
     document.querySelector("input[placeholder='Autor']").value = "";
-    document.querySelector("input[placeholder='Codigo']").value = "";
-    document.querySelector("#status").value = "";
 }
 
 
@@ -61,8 +54,7 @@ function salvarAtores() {
         
         const autor = {
             nome: colunas[0].innerText,
-            codigo: colunas[1].innerText,
-            status: colunas[2].innerText
+            status: colunas[1].innerText
         }
         atoresSalvos.push(autor);
     });
@@ -81,10 +73,9 @@ function carregarAtores(){
             const novaLinha = tabela.insertRow();
             novaLinha.innerHTML = `
             <td>${ator.nome}</td>
-            <td>${ator.codigo}</td>
             <td>${ator.status}</td>
             `;
-            corStatus(novaLinha.cells[2], ator.status);
+            corStatus(novaLinha.cells[0], ator.status);
             novaLinha.addEventListener("click", function () {
                 linhaSelecionada = this;
                 preencherFormularioComlinha(this);
@@ -139,8 +130,7 @@ document.querySelector("#autoresTable").addEventListener("click", function (even
     limparFomrulario();
 
     document.getElementById("editAutor").value = linha.cells[0].innerText;
-    document.getElementById("editcodigo").value = linha.cells[1].innerText;
-    document.getElementById("editstatus").value = linha.cells[2].innerText;
+    document.getElementById("editstatus").value = linha.cells[1].innerText;
 
     modal.style.display = "block";
 })
