@@ -272,7 +272,7 @@ input {
     padding: 5px 20px;
     font-size: 17px;
     outline: none;
-    border: 1px solid var(--black2);
+    border: 1.9px solid var(--blue);
     margin-bottom: 20px;
     margin: 8px;
 }
@@ -339,7 +339,7 @@ select {
     padding: 5px 20px;
     font-size: 17px;
     outline: none;
-    border: 1px solid var(--black2);
+    border: 1.9px solid var(--blue);
     margin-bottom: 20px;
     margin: 8px;
     top: 23px;
@@ -347,7 +347,7 @@ select {
 
 option {
     font-size: 17px;
-    color: var(--black1);
+    color: var(--blue);
     margin-bottom: 10px;
     font-weight: 500;
     text-align: left; 
@@ -451,7 +451,7 @@ option {
     padding-left: 35px;
     font-size: 15px;
     outline: none;
-    border: 2.5px solid var(--black2);
+    border: 2.5px solid var(--blue);
     margin-top: 10px;
     margin-bottom: -10px;
     position: relative;
@@ -490,6 +490,7 @@ option {
     border-collapse: collapse;
     margin-top: -4px;
     border: solid 3px var(--blue); 
+    font-weight: 500;
    }
 
   .details table thead td {
@@ -501,7 +502,7 @@ option {
 
 
   .details .recentOrders table tr {
-    color: var(--black1);
+    color: var(--blue);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
   .details .recentOrders table tr:last-child {

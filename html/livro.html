@@ -6,11 +6,225 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/livro.css">
 </head>
+<body>
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon" title="Livraria">
+                        <ion-icon name="library-outline"></ion-icon>
+                    </span>
+                    <span class="title">Livraria Sola Scriptura</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="index.html">
+                    <span class="icon" title="Planilha">
+                        <ion-icon name="grid-outline"></ion-icon>
+                      </span>
+                    <span class="title">Catalogo</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="autores.html">
+                    <span class="icon">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </span>
+                    <span class="title">Autores</span>
+                </a>
+            </li>
+            <li>
+                <a href="livro.html" data-section="livrosSection">
+                  <span class="icon" title="Livros">
+                    <ion-icon name="book-outline"></ion-icon>
+                  </span>
+                  <span class="title">Livros</span>
+                </a>
+            </li>
+              
+        
+            <li>
+                <a href="editora.html">
+                    <span class="icon" title="Editoras">
+                        <ion-icon name="business-outline"></ion-icon>
+                      </span>
+                    <span class="title">Editoras</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="lista.html">
+                    <span class="icon" title="Informações">
+                        <ion-icon name="list-outline"></ion-icon>
+                      </span>
+                    <span class="title">Lista de tarefas</span>
+                </a>
+            </li>
+            <li>
+                <a href="infor.html">
+                    <span class="icon" title="Informações">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                      </span>
+                    <span class="title">Informações</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="user.html">
+                    <span class="icon" title="Informações do Usuário">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                    </span>
+                    <span class="title">usuarios</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <main>
+        <div class="form-livro">            
+            <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                    <div class="user">
+                        <img src="../img/image copy.png" alt="">
+                    </div>
+            </div>        
+            <div class="form-livro-header">
+                <h1>CADASTRE UM LIVRO</h1>
+            </div>
+            <form action="">
+                <div class="form-livro-1">
+                    <label for="">Titulo:</label>
+                    <input type="text"  placeholder="Titulo" required>  
+                    <label for="">Subtitulo:</label>
+                    <input type="text" placeholder="Subtitulo" required> 
+                    <label for="">Autor:</label>
+                    <input type="text" placeholder="Nome do autor" required>
+                </div>
+                
+                <div class="form-livro-2">
+
+                    <label for="">Editora:</label>
+                    <input type="text" placeholder="Nome da editora" required >
+                    <label for="">Valor:</label>
+                    <input type="text" placeholder="Valor do livro" required style="border: solid 1px var(--black2);"> 
+                    <label for="">Quantidade:</label>
+                    <input type="text" placeholder="Quantidade do livro" required style="border: solid 1px var(--black2);">
+                </div>
+              
+                <div class="form-livro-3">
+                    <label for="">ISBN:</label>
+                    <input type="text" placeholder="ISBN" required style="border: solid 1px var(--black2);">
+                    <label for="categoria">Categoria:</label>
+                    <select name="categoria" id="categoria">
+                        <option value="" disabled selected></option>
+                        <option value="FICÇÃO" >FICÇÃO</option>
+                        <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
+                        <option value="AUTO AJUDA">AUTO AJUDA</option>
+                        <option value="TERROR">TERROR</option>
+                        <option value="ROMANCE">ROMANCE</option>
+                        <option value="BIOGRAFIA">BIOGRAFIA</option>
+                        <option value="INFANTIL">INFANTIL</option>  
+                    </select>    
+                    <label for="tipoCapa">TipoCapa:</label>
+                    <select name="tipoCapa" id="tipoCapa">
+                        <option value="" disabled selected></option>
+                        <option value="DURA">DURA</option>
+                        <option value="MOLDA">MOLDA</option>
+                        <option value="BROCHURA">BROCHURA</option>
+                    </select>    
+                </div>
+                <div class="button-devs">
+                    <input type="button" value="Cadastrar" class="button-cadast" >
+                    
+                        <div class="button-isbn">
+                            <button id="button-isbn">ISBN</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <section class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>LIVROS</h2>
+                </div>
+                
+                <div class="selecoes">
+                    <div class="search">
+                        <label>
+                            <input type="text"  id="buscarLivro" placeholder="Procurar livro">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="botoes-infr">
+                        <label style="display: none;">
+                            <input type="button" value="Atualizar" class="Atualizar">
+                        </label>
+                        <label for="" style="display: none;">
+                            <input type="button" value="Remover" class="Deletar">
+                        </label>
+                    </div>
+                </div>
+
+                <table id="livrosTable">
+                    <thead>
+                        <tr>
+                            <td class="titulo">TITULO</td>
+                            <td class="subtitulo">SUBTITULO</td>
+                            <td class="autor">AUTOR</td>
+                            <td class="editora">EDITORA</td>
+                            <td class="tipo-capa">TIPO CAPA</td>
+                            <td class="categoria">CATEGORIA</td>
+                            <td class="isbn">ISBN</td>
+                            <td class="valor">VALOR</td>
+                            <td class="quantidade">QUANTIDADE</td>
+                            <td class="status">STATUS</td>
+                            <td class="data">DATA DE CADASTRO</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Biblia</td>
+                            <td>Jesus</td>
+                            <td>Papa</td>
+                            <td>Igreja</td>
+                            <td>Dura</td>
+                            <td>BIOGRAFIA</td>                           
+                            <td>123456</td>                           
+                            <td>0</td>
+                            <td>100</td>
+                            <td>ATIVO</td>
+                            <td>22/04/2025, 14:24:50</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+        </section>
+
+
+
+        
+    </main>
+
+
+
+    <script src="../js/index.js"></script>
+    <script src="../js/livro.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
 
 
 
 
 
+
+<!--   
 <div id="modalLivro" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button" style="display: none;">&times;</span>
@@ -166,251 +380,4 @@
         </form>
     </div>
 </div>
-
-
-
-
-<body>
-    <nav class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon" title="Livraria">
-                        <ion-icon name="library-outline"></ion-icon>
-                    </span>
-                    <span class="title">Livraria Sola Scriptura</span>
-                </a>
-            </li>
-            
-            <li>
-                <a href="index.html">
-                    <span class="icon" title="Planilha">
-                        <ion-icon name="grid-outline"></ion-icon>
-                      </span>
-                    <span class="title">Catalogo</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="autores.html">
-                    <span class="icon">
-                        <ion-icon name="create-outline"></ion-icon>
-                    </span>
-                    <span class="title">Autores</span>
-                </a>
-            </li>
-            <li>
-                <a href="livro.html" data-section="livrosSection">
-                  <span class="icon" title="Livros">
-                    <ion-icon name="book-outline"></ion-icon>
-                  </span>
-                  <span class="title">Livros</span>
-                </a>
-            </li>
-              
-        
-            <li>
-                <a href="editora.html">
-                    <span class="icon" title="Editoras">
-                        <ion-icon name="business-outline"></ion-icon>
-                      </span>
-                    <span class="title">Editoras</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="lista.html">
-                    <span class="icon" title="Informações">
-                        <ion-icon name="list-outline"></ion-icon>
-                      </span>
-                    <span class="title">Lista de tarefas</span>
-                </a>
-            </li>
-            <li>
-                <a href="infor.html">
-                    <span class="icon" title="Informações">
-                        <ion-icon name="information-circle-outline"></ion-icon>
-                      </span>
-                    <span class="title">Informações</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="user.html">
-                    <span class="icon" title="Informações do Usuário">
-                        <ion-icon name="person-circle-outline"></ion-icon>
-                    </span>
-                    <span class="title">usuarios</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-
-    <main>
-        <div class="form-livro">            
-            <div class="topbar">
-                    <div class="toggle">
-                        <ion-icon name="menu-outline"></ion-icon>
-                    </div>
-                    
-    
-                    <div class="user">
-                        <img src="../img/image copy.png" alt="">
-                    </div>
-            </div>        
-            <div class="form-livro-header">
-                <h1>CADASTRE UM LIVRO</h1>
-            </div>
-            <form action="">
-                <div class="form-livro-1">
-                    <label for="">Titulo:</label>
-                    <input type="text" placeholder="Titulo" required>  
-                    <label for="">Valor:</label>
-                    <input type="text" placeholder="Valor do livro" required> 
-                    <label for="">Autor:</label>
-                    <input type="text" placeholder="Nome do autor" required>
-                </div>
-                
-                <div class="form-livro-2">
-
-                    <label for="">Editora:</label>
-                    <input type="text" placeholder="Nome da editora" required>
-                    <label for="">Quantidade:</label>
-                    <input type="text" placeholder="Quantidade do livro" required>
-                    <label for="status">Status:</label>
-                    <select name="status" id="status">
-                        <option value="" disabled selected ></option>
-                        <option value="EMPRESTADO" >EMPRESTADO</option>
-                        <option value="DISPONÍVEL">DISPONÍVEL</option>
-                        <option value="ESGOTADO">ESGOTADO</option>
-                        <option value="DANIFICADO">DANIFICADO </option>
-                        <option value="RESERVADO">RESERVADO </option>
-                        <option value="REMOVIDO">REMOVIDO</option>
-                    </select>
-                </div>
-              
-                <div class="form-livro-3">
-                    <label for="categoria">Categoria:</label>
-                    <select name="categoria" id="categoria">
-                        <option value="" disabled selected></option>
-                        <option value="FICÇÃO" >FICÇÃO</option>
-                        <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
-                        <option value="AUTO AJUDA">AUTO AJUDA</option>
-                        <option value="TERROR">TERROR</option>
-                        <option value="ROMANCE">ROMANCE</option>
-                        <option value="BIOGRAFIA">BIOGRAFIA</option>
-                        <option value="INFANTIL">INFANTIL</option>  
-                    </select>    
-                    <label for="tipoCapa">TipoCapa:</label>
-                    <select name="tipoCapa" id="tipoCapa">
-                        <option value="" disabled selected></option>
-                        <option value="DURA">DURA</option>
-                        <option value="MOLDA">MOLDA</option>
-                        <option value="BROCHURA">BROCHURA</option>
-                    </select>    
-                </div>
-                <div class="button-devs">
-                    <input type="button" value="Cadastrar" class="button-cadast" >
-                    
-                        <div class="button-isbn">
-                            <button id="button-isbn">ISBN</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-
-
-        <section class="details">
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>LIVROS</h2>
-                </div>
-                
-                <div class="selecoes">
-                    <div class="search">
-                        <label>
-                            <input type="text"  id="buscarLivro" placeholder="Procurar livro">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </div>
-                    <div class="botoes-infr">
-                        <label style="display: none;">
-                            <input type="button" value="Atualizar" class="Atualizar">
-                        </label>
-                        <label for="" style="display: none;">
-                            <input type="button" value="Remover" class="Deletar">
-                        </label>
-                    </div>
-                </div>
-
-                <table id="livrosTable">
-                    <thead>
-                        <tr>
-                            <td class="titulo">Titulo</td>
-                            <td class="titulo">SUBTITULO</td>
-                            <td class="valor">Valor</td>
-                            <td class="Autor">Autor</td>
-                            <td class="Editora">Editora</td>
-                            <td class="quantidade">Quantidade</td>
-                            <td class="tipo-capa">Tipo capa</td>
-                            <td class="categoria">Categoria</td>
-                            <td class="status">DATA DE CADASTRO</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Biblia</td>
-                            <td>Jesus</td>
-                            <td>0</td>
-                            <td>Papa</td>
-                            <td>Igreja</td>
-                            <td>100</td>
-                            <td>Dura</td>
-                            <td>BIOGRAFIA</td>
-                           
-                            <td>22/04/2025, 14:24:50</td>
-                        </tr>
-                        <tr>
-                            <td>Melhor lider picareta</td>
-                            <td>Psiquiatra</td>
-                            <td>300</td>
-                            <td>Augusto Curi</td>
-                            <td>Saude</td>
-                            <td>4</td>
-                            <td>Mole</td>
-                            <td>Ficção</td>
-            
-                            <td>30/04/2025, 20:50:30</td>
-                        </tr>
-                        <tr>
-                            <td>Lider da historia</td>
-                            <td>Ford</td>
-                            <td>210</td>
-                            <td>Max</td>
-                            <td>Loko</td>
-                            <td>14</td>
-                            <td>Duro</td>
-                            <td>Historia</td>
-                         
-                            <td>10/02/2025, 10:20:00</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-        </section>
-
-
-
-        
-    </main>
-
-
-
-    <script src="../js/index.js"></script>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
-</html>
+-->

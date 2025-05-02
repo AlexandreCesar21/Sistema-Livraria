@@ -1,98 +1,227 @@
-let linhaSelecionada = null;
-
-// Função para cadastrar
-document.querySelector(".button-cadast").addEventListener("click", function () {
-    const tabela = document.querySelector("#livrosTable tbody");
-
-    const titulo = getValue("input[placeholder='Titulo']");
-    const valor = getValue("input[placeholder='Valor do livro']");
-    const autor = getValue("input[placeholder='Nome do autor']");
-    const editora = getValue("input[placeholder='Nome da editora']");
-    const quantidade = getValue("input[placeholder='Quantidade do livro']");
-    const tipoCapa = getValue("#tipoCapa");
-    const formato = getValue("#formato");
-    const categoria = getValue("#categoria");
-    const status = getValue("#status");
-
-    if (!titulo || !valor || !autor || !editora || !quantidade || !tipoCapa || !formato || !categoria || !status) {
-        alert("Por favor, preencha todos os campos.");
+document.addEventListener("DOMContentLoaded", () => {
+    const cadastrarBtn = document.querySelector(".button-cadast");
+    const tabelaLivros = document.querySelector("#livrosTable tbody");
+    const buscarInput = document.getElementById("buscarLivro");
+  
+    // Carregar livros salvos
+    carregarLivros();
+  
+    cadastrarBtn.addEventListener("click", () => {
+      const titulo = document.querySelector('input[placeholder="Titulo"]').value;
+      const subtitulo = document.querySelector('input[placeholder="Subtitulo"]').value;
+      const autor = document.querySelector('input[placeholder="Nome do autor"]').value;
+      const editora = document.querySelector('input[placeholder="Nome da editora"]').value;
+      const valor = document.querySelector('input[placeholder="Valor do livro"]').value;
+      const quantidade = document.querySelector('input[placeholder="Quantidade do livro"]').value;
+      const isbn = document.querySelector('input[placeholder="ISBN"]').value;
+      const categoria = document.getElementById("categoria").value;
+      const tipoCapa = document.getElementById("tipoCapa").value;
+  
+      if (!titulo || !autor || !editora || !quantidade || !categoria || !tipoCapa) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
         return;
-    }
-
-    const novaLinha = tabela.insertRow();
-    novaLinha.innerHTML = `
-        <td>${titulo}</td>
-        <td>${valor}</td>
-        <td>${autor}</td>
-        <td>${editora}</td>
-        <td>${quantidade}</td>
-        <td>${tipoCapa}</td>
-        <td>${formato}</td>
-        <td>${categoria}</td>
-        <td>${status}</td>
-    `;
-
-    corStatus(novaLinha.cells[8], status);
-
-    novaLinha.addEventListener("click", function () {
-        linhaSelecionada = this;
-        preencherFormularioComLinha(this);
+      }
+  
+      const livro = {
+        titulo,
+        subtitulo,
+        autor,
+        editora,
+        tipoCapa,
+        categoria,
+        isbn,
+        valor,
+        quantidade,
+        status: "ATIVO",
+        dataCadastro: new Date().toLocaleString()
+      };
+  
+      adicionarLivroNaTabela(livro);
+      salvarLivro(livro);
+      document.querySelector("form").reset();
     });
-
-    limparFormulario();
-    linhaSelecionada = null;
-});
-
-// Função para atualizar (form principal)
-document.querySelector(".Atualizar").addEventListener("click", function () {
-    if (linhaSelecionada) {
-        linhaSelecionada.cells[0].innerText = getValue("input[placeholder='Titulo']");
-        linhaSelecionada.cells[1].innerText = getValue("input[placeholder='Valor do livro']");
-        linhaSelecionada.cells[2].innerText = getValue("input[placeholder='Nome do autor']");
-        linhaSelecionada.cells[3].innerText = getValue("input[placeholder='Nome da editora']");
-        linhaSelecionada.cells[4].innerText = getValue("input[placeholder='Quantidade do livro']");
-        linhaSelecionada.cells[5].innerText = getValue("#tipoCapa");
-        linhaSelecionada.cells[6].innerText = getValue("#formato");
-        linhaSelecionada.cells[7].innerText = getValue("#categoria");
-        linhaSelecionada.cells[8].innerText = getValue("#status");
-
-        corStatus(linhaSelecionada.cells[8], linhaSelecionada.cells[8].innerText);
-
-        linhaSelecionada = null;
-        limparFormulario();
-    } else {
-        alert("Selecione um livro da tabela para atualizar.");
+  
+    function adicionarLivroNaTabela(livro) {
+      const linha = document.createElement("tr");
+      linha.innerHTML = `
+        <td>${livro.titulo}</td>
+        <td>${livro.subtitulo}</td>
+        <td>${livro.autor}</td>
+        <td>${livro.editora}</td>
+        <td>${livro.tipoCapa}</td>
+        <td>${livro.categoria}</td>
+        <td>${livro.isbn}</td>
+        <td>${livro.valor}</td>
+        <td>${livro.quantidade}</td>
+        <td>${livro.status}</td>
+        <td>${livro.dataCadastro}</td>
+      `;
+      tabelaLivros.appendChild(linha);
     }
-});
-
-// Função auxiliar para pegar valores
-function getValue(selector) {
-    return document.querySelector(selector).value;
-}
-
-function preencherFormularioComLinha(linha) {
-    limparFormulario();
-
-    document.querySelector("input[placeholder='Titulo']").value = linha.cells[0].innerText;
-    document.querySelector("input[placeholder='Valor do livro']").value = linha.cells[1].innerText;
-    document.querySelector("input[placeholder='Nome do autor']").value = linha.cells[2].innerText;
-    document.querySelector("input[placeholder='Nome da editora']").value = linha.cells[3].innerText;
-    document.querySelector("input[placeholder='Quantidade do livro']").value = linha.cells[4].innerText;
-    document.querySelector("#tipoCapa").value = linha.cells[5].innerText;
-    document.querySelector("#formato").value = linha.cells[6].innerText;
-    document.querySelector("#categoria").value = linha.cells[7].innerText;
-    document.querySelector("#status").value = linha.cells[8].innerText;
-
-    document.querySelector(".form-cadastro").style.display = "none";
-    modal.style.display = "flex";
-}
-
-function limparFormulario() {
-    document.querySelectorAll("input[type='text']").forEach(input => input.value = "");
-    document.querySelectorAll("select").forEach(select => select.value = "");
-}
+  
+    function salvarLivro(livro) {
+      const livros = JSON.parse(localStorage.getItem("livros")) || [];
+      livros.push(livro);
+      localStorage.setItem("livros", JSON.stringify(livros));
+    }
+  
+    function carregarLivros() {
+      const livros = JSON.parse(localStorage.getItem("livros")) || [];
+      livros.forEach(livro => adicionarLivroNaTabela(livro));
+    }
+  
+    // 🔍 Busca
+    buscarInput.addEventListener("input", () => {
+      const termo = buscarInput.value.toLowerCase();
+      const linhas = tabelaLivros.querySelectorAll("tr");
+  
+      linhas.forEach(linha => {
+        const textoLinha = linha.textContent.toLowerCase();
+        linha.style.display = textoLinha.includes(termo) ? "" : "none";
+      });
+    });
+  });
+  
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  /*
+  let linhaSelecionada = null;
+  
+  // Função para cadastrar
+  document.querySelector(".button-cadast").addEventListener("click", function () {
+      const tabela = document.querySelector("#livrosTable tbody");
+      const status = "Ativo"; // Valor fixo
+  
+      const titulo = getValue("input[placeholder='Titulo']");
+      const subtitulo = getValue("input[placeholder='Subtitulo']");
+      const autor = getValue("input[placeholder='Nome do autor']");
+      const editora = getValue("input[placeholder='Nome da editora']");
+      const valor = getValue("input[placeholder='Valor do livro']");
+      const quantidade = getValue("input[placeholder='Quantidade do livro']");
+      const isbn = getValue("input[placeholder='isbn']");
+      const tipoCapa = getValue("#tipoCapa");
+      const categoria = getValue("#categoria");
+  
+      if (!titulo || !subtitulo || !autor || !editora || !tipoCapa || !categoria) {
+          alert("Por favor, preencha todos os campos.");
+          return;
+      }
+  
+      const dataHoraAtual = gerarDataHora();
+  
+      const novaLinha = tabela.insertRow();
+      novaLinha.innerHTML = `
+          <td>${titulo}</td>
+          <td>${subtitulo}</td>
+          <td>${autor}</td>
+          <td>${editora}</td>
+          <td>${tipoCapa}</td>
+          <td>${categoria}</td>
+          <td>${isbn}</td>
+          <td>${valor}</td>
+          <td>${quantidade}</td>
+          <td>${status}</td>
+          <td>${dataHoraAtual}</td>
+      `;
+  
+      corStatus(novaLinha.cells[9], status);
+  
+      novaLinha.addEventListener("click", function () {
+          linhaSelecionada = this;
+          preencherFormularioComLinha(this);
+      });
+  
+      limparFormulario();
+      linhaSelecionada = null;
+  });
+  
+  // === FUNÇÃO corStatus ===
+  function corStatus(td, statusValue) {
+      switch (statusValue.toLowerCase()) {
+          case 'ativo':
+              td.style.backgroundColor = '#8de02c';
+              break;
+          case 'inativo':
+              td.style.backgroundColor = '#e2e3e5';
+              break;
+      }
+      td.style.color = 'black';
+      td.style.fontWeight = '900';
+  }
+  
+  // Gera data e hora no formato "01/05/2025 15:22"
+  function gerarDataHora() {
+      const agora = new Date();
+      const dia = String(agora.getDate()).padStart(2, '0');
+      const mes = String(agora.getMonth() + 1).padStart(2, '0');
+      const ano = agora.getFullYear();
+      const hora = String(agora.getHours()).padStart(2, '0');
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+  
+      return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+  }
+  
+  // Função auxiliar para pegar valores
+  function getValue(selector) {
+      return document.querySelector(selector).value;
+  }
+  
+  function preencherFormularioComLinha(linha) {
+      limparFormulario();
+  
+      document.querySelector("input[placeholder='Titulo']").value = linha.cells[0].innerText;
+      document.querySelector("input[placeholder='Subtitulo']").value = linha.cells[1].innerText;
+      document.querySelector("input[placeholder='Nome do autor']").value = linha.cells[2].innerText;
+      document.querySelector("input[placeholder='Nome da editora']").value = linha.cells[3].innerText;
+      document.querySelector("#tipoCapa").value = linha.cells[4].innerText;
+      document.querySelector("#categoria").value = linha.cells[5].innerText;
+      document.querySelector("input[placeholder='isbn']").value = linha.cells[6].innerText;
+      document.querySelector("input[placeholder='Valor do livro']").value = linha.cells[7].innerText;
+      document.querySelector("input[placeholder='Quantidade do livro']").value = linha.cells[8].innerText;
+  
+      document.querySelector(".form-cadastro").style.display = "none";
+      modal.style.display = "flex";
+  }
+  
+  function limparFormulario() {
+      document.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+      document.querySelectorAll("select").forEach(select => select.value = "");
+  }
+
+  
 // Modal de ISBN
 const modalIsbn = document.getElementById("modalIsbn")
 const isbnFechar = document.getElementById("btnisbnFechar")
@@ -253,30 +382,4 @@ document.getElementById("buscarLivro").addEventListener("input", function () {
     });
 });
 
-// === FUNÇÃO corStatus ===
-function corStatus(td, statusValue) {
-    switch (statusValue.toLowerCase()) {
-        case 'disponível':
-            td.style.backgroundColor = '#8de02c';
-            break;
-        case 'emprestado':
-            td.style.backgroundColor = '#87cefa';
-            break;
-        case 'esgotado':
-            td.style.backgroundColor = '#f8d7da';
-            break;
-        case 'danificado':
-            td.style.backgroundColor = '#d32e2e';
-            break;
-        case 'reservado':
-            td.style.backgroundColor = '#ffd700';
-            break;
-        case 'removido':
-            td.style.backgroundColor = '#e2e3e5';
-            break;
-        default:
-            td.style.backgroundColor = '#ffffff';
-    }
-    td.style.color = 'black';
-    td.style.fontWeight = '900';
-}
+*/
