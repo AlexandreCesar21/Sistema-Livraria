@@ -6,6 +6,85 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/livro.css">
 </head>
+
+<div id="modalLivro" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" style="display: none;">&times;</span>
+        <h2>EDITAR LIVRO</h2>
+        <form id="formEditarLivro">
+            <div class="modal-header">
+                <label>Titulo:</label>
+                <input type="text" id="editTitulo"><br>
+               
+                <label>Subtitulo:</label>
+                <input type="text" id="editSubtitulo"><br>
+                
+                <label>Autor:</label>
+                <input type="text" id="editAutor"><br>
+
+                
+            </div>
+            
+            <div class="modal-body">
+                <label id="edit">Editora:</label>
+                <input type="text" id="editEditora"><br>
+                
+                <label style="position: relative; left: 30px;">Valor:</label>
+                <input type="text" id="editValor"><br>
+                
+                <label id="edit">Quantidade:</label>
+                <input type="text" id="editQuantidade"><br>
+                
+                
+            </div>
+            
+            <div class="modal-footer">                
+                
+                <label>Tipo Capa:</label>
+                <select name="tipoCapa" id="editTipoCapa">
+                    <option value="" disabled selected></option>
+                    <option value="DURA">DURA</option>
+                    <option value="MOLDA">MOLDA</option>
+                    <option value="BROCHURA">BROCHURA</option>
+                </select><br>
+
+                <label>Categoria:</label>
+                <select name="categoria" id="editCategoria">
+                    <option value="" disabled selected></option>
+                    <option value="FICÇÃO" >FICÇÃO</option>
+                    <option value="NÃO FICÇÃO">NÃO FICÇÃO</option>
+                    <option value="AUTO AJUDA">AUTO AJUDA</option>
+                    <option value="TERROR">TERROR</option>
+                    <option value="ROMANCE">ROMANCE</option>
+                    <option value="BIOGRAFIA">BIOGRAFIA</option>
+                    <option value="INFANTIL">INFANTIL</option>  
+                </select><br>
+    
+                <label>Status:</label>
+                <select name="status" id="editStatus">
+                    <option value="" disabled selected ></option>
+                    <option value="ATIVO" >ATIVO</option>
+                    <option value="INATIVO">INATIVO</option>
+                </select>
+            </div>
+            <div class="modal-footer">                
+                
+                <label>ISBN:</label>
+                <input type="text" id="editIsbn"><br>
+            </div>
+            
+            
+
+            <div class="modal-buttons">
+                <button type="button" id="btnSalvar">Salvar</button>
+                <button type="button" id="btnFechar">Fechar</button>
+                <button type="button" id="Remover">Remover</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <body>
     <nav class="navigation">
         <ul>
@@ -187,19 +266,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Biblia</td>
-                            <td>Jesus</td>
-                            <td>Papa</td>
-                            <td>Igreja</td>
-                            <td>Dura</td>
-                            <td>BIOGRAFIA</td>                           
-                            <td>123456</td>                           
-                            <td>0</td>
-                            <td>100</td>
-                            <td>ATIVO</td>
-                            <td>22/04/2025, 14:24:50</td>
-                        </tr>
+                       
                     </tbody>
                 </table>
                 

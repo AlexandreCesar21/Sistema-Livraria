@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
     function adicionarLivroNaTabela(livro) {
       const linha = document.createElement("tr");
+      const classeStatus = livro.status === "ATIVO" ? "status-ativo" : "status-inativo";
+
+
       linha.innerHTML = `
         <td>${livro.titulo}</td>
         <td>${livro.subtitulo}</td>
@@ -53,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${livro.isbn}</td>
         <td>${livro.valor}</td>
         <td>${livro.quantidade}</td>
-        <td>${livro.status}</td>
-        <td>${livro.dataCadastro}</td>
+        <td class="${classeStatus}">${livro.status}</td>
+        <td class="data-horario">${livro.dataCadastro}</td>
       `;
       tabelaLivros.appendChild(linha);
     }

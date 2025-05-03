@@ -582,10 +582,24 @@ option {
   
   
 
+  .status-ativo {
+    color: white;
+    font-weight: 900;
+    background-color: green;
+  }
+  
+  .status-inativo {
+    color: white;
+    font-weight: 900;
+    background-color: red;
+  }
 
 
-
-
+  .data-horario {
+    color: black;
+    background-color: rgb(52, 181, 255);
+    font-weight: 900;
+  }
 
   .Atualizar {
     color: var(--white);
