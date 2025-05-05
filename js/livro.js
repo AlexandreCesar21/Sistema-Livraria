@@ -18,7 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const tipoCapa = document.getElementById("tipoCapa").value;
   
       if (!titulo || !autor || !editora || !quantidade || !categoria || !tipoCapa) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
+        const modalErro = document.getElementById("modalErroCampos");
+        const fecharErro = document.querySelector(".close-erro");
+      
+        modalErro.style.display = "flex";
+      
+        fecharErro.onclick = () => {
+          modalErro.style.display = "none";
+        };
+      
+        window.onclick = (event) => {
+          if (event.target === modalErro) {
+            modalErro.style.display = "none";
+          }
+        };
+      
         return;
       }
   
@@ -38,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       adicionarLivroNaTabela(livro);
       salvarLivro(livro);
-      document.querySelector("form").reset();
+      document.getElementById("formCadastro").reset();
     });
   
     function adicionarLivroNaTabela(livro) {
@@ -131,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linhaSelecionada = null;
     });
   
-    btnRemover.addEventListener("click", () => {
+    btnRemover.addEventListener("click", () => {888888888888888888888888888888888888888888888888888888888888888
         if (!linhaSelecionada) return;
       
         const confirmModal = document.getElementById("confirmModal");
