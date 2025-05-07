@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       linhaSelecionada = null;
     });
   
-    btnRemover.addEventListener("click", () => {888888888888888888888888888888888888888888888888888888888888888
+    btnRemover.addEventListener("click", () => {
         if (!linhaSelecionada) return;
       
         const confirmModal = document.getElementById("confirmModal");
@@ -267,4 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
       
       
   }
+  
+
   
