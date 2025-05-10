@@ -16,10 +16,6 @@
             <div class="modal-header">
                 <label>Autor:</label>
                 <input type="text" id="editAutor"><br>
-                
-                <label>Código:</label>
-                <input type="text" id="editcodigo"><br>
-
             </div>
         
 
@@ -157,14 +153,7 @@
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
                     </div>
-                    <div class="botoes-infr">
-                        <label style="display: none;">
-                            <input type="button" value="Atualizar" class="Atualizar">
-                        </label>
-                        <label for="" style="display: none;">
-                            <input type="button" value="Remover" class="Deletar">
-                        </label>
-                    </div>
+                
                 </div>
 
                 <table id="autoresTable">
@@ -183,10 +172,23 @@
         </section>
     </main>
 
+    <div id="toast" class="toast hidden">Mensagem aqui</div>
     
     <script src="../js/index.js"></script>
     <script src="../js/autor.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
+<div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-content-remover">
+      <p>Tem certeza que deseja remover este livro?</p>
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+        <button id="btnConfirmarSim">Sim</button>
+        <button id="btnConfirmarNao">Cancelar</button>
+      </div>
+    </div>
+</div>
+
+
 </html>
