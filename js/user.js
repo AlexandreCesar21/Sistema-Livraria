@@ -1,146 +1,148 @@
-let linhaSelecionada = null;
+document.addEventListener('DOMContentLoaded', () => {
+    const usuarioTable = document.querySelector('#usuarioTable tbody');
+    const inputUsuario = document.getElementById('usuario');
+    const inputSenha = document.getElementById('senha');
+    const btnCadastrar = document.querySelector('.button-cadast');
+    const buscarInput = document.getElementById('buscarUsuario');
 
-document.querySelector(".button-cadast").addEventListener("click", function () {
-    const tabela = document.querySelector("#usuarioTable tbody");
+    const modalUsuario = document.getElementById('modalUsuario');
+    const btnFechar = document.getElementById('btnFechar');
+    const btnSalvar = document.getElementById('btnSalvar');
+    const btnRemover = document.getElementById('btnRemover');
 
-    const usuario = getValue("input[placeholder='usuario']");
-    const senha = getValue("input[placeholder='Senha']");
+    const confirmModal = document.getElementById('confirmModal');
+    const btnConfirmarSim = document.getElementById('btnConfirmarSim');
+    const btnConfirmarNao = document.getElementById('btnConfirmarNao');
 
+    const editUsuarioInput = document.getElementById('editUsuario');
+    const editSenhaInput = document.getElementById('editSenha');
+    const editStatusInput = document.getElementById('editStatus');
 
-    if (!usuario || !senha) {
-        alert("Preencha todos os campos!");
-        return;
-    }
+    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    let usuarioSelecionadoIndex = null;
 
-    const novaLinha = tabela.insertRow();
-    novaLinha.innerHTML = `
-        <td>${usuario}</td>
-        <td>${senha}</td>
-    `;
-
-    novaLinha.addEventListener("click", function () {
-        linhaSelecionada = this;
-        preencherFormularioComlinha(this);
-    });
-
-    limparFormulario();
-    linhaSelecionada = null;
-
-})
-
-function getValue(selector) {
-    return document.querySelector(selector).value;
-}
-
-function preencherFormularioComlinha(linha) {
-    limparFormulario();
-
-    document.querySelector("input[placeholder='usuario']").value = linha.cells[0].innerText;
-    document.querySelector("input[placeholder='Senha']").value = linha.cells[1].innerText;
-}
-
-function limparFormulario() {
-    document.querySelector("input[placeholder='usuario']").value = "";
-    document.querySelector("input[placeholder='Senha']").value = "";
-}
-
-let usuarioSalvos = [];
-function salvarUsuario() {
-    usuarioSalvos = []
-    document.querySelectorAll("#usuarioTable tbody tr").forEach(function (linha) {  
-        const colunas = linha.querySelectorAll("td");
-
-        const usuario = {
-            usuario: colunas[0].innerText,
-            senha: colunas[1].innerText
-        }
-        usuarioSalvos.push(usuario);
-    })
-    localStorage.setItem("usuarioSalvos", JSON.stringify(usuarioSalvos));
-}
-
-function carregarUsuario() {
-    const dados = localStorage.getItem("usuarios");
-    if (dados) {
-        const usuarios = JSON.parse(dados);
-        const tabela = document.querySelector("#usuarioTable tbody");
-        tabela.innerHTML = ""; // Limpa a tabela antes de carregar os dados
-        usuarios.forEach(function (usuario) {
-            const novaLinha = tabela.insertRow();
-            novaLinha.innerHTML = `
+    function renderTabela() {
+        usuarioTable.innerHTML = '';
+        usuarios.forEach((usuario, index) => {
+            const tr = document.createElement('tr');
+            const classeStatus = usuario.status === "ATIVO" ? "status-ativo" : "status-inativo";
+            tr.innerHTML = `
                 <td>${usuario.usuario}</td>
-                <td>${usuario.senha}</td>
+                <td class="${classeStatus}">${usuario.status}</td>
+                <td class="data-horario">${usuario.dataCadastro}</td>
             `;
-            novaLinha.addEventListener("click", function () {
-                linhaSelecionada = this;
-                preencherFormularioComlinha(this);
-            });
+            tr.addEventListener('click', () => abrirModal(index));
+            usuarioTable.appendChild(tr);
         });
     }
-}
 
+    function cadastrarUsuario() {
+        const nome = inputUsuario.value.trim();
+        const senha = inputSenha.value.trim();
+        if (!nome || !senha) return mostrarToast("Digite o nome e a senha do usuário!", "erro");
 
+        const novaDataCadastro = new Date();
+        const dataCadastroFormatada = `${novaDataCadastro.toLocaleDateString()} ${novaDataCadastro.getHours().toString().padStart(2, '0')}:${novaDataCadastro.getMinutes().toString().padStart(2, '0')}:${novaDataCadastro.getSeconds().toString().padStart(2, '0')}`;
 
+        const novoUsuario = {
+            usuario: nome,
+            senha: senha,
+            status: 'ATIVO',
+            dataCadastro: dataCadastroFormatada
+        };
 
-window.addEventListener("beforeunload", salvarUsuario)
-window.addEventListener("load", carregarUsuario)
-
-
-
-document.getElementById("buscarUsuario").addEventListener("input", function () {
-    const termoBusca = this.value.toLowerCase();
-    const linhas = document.querySelectorAll("#usuarioTable tbody tr");
-
-    linhas.forEach((linha) => {
-        const texLinha = linha.innerText.toLowerCase();
-        linha.style.display = texLinha.includes(termoBusca) ? "" : "none";
+        usuarios.push(novoUsuario);
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        inputUsuario.value = '';
+        inputSenha.value = '';
+        renderTabela();
+        mostrarToast("Usuário cadastrado com sucesso!", "sucesso");
     }
-    );
-}
-);
 
+    function abrirModal(index) {
+        const usuario = usuarios[index];
+        usuarioSelecionadoIndex = index;
+        editUsuarioInput.value = usuario.usuario;
+        editSenhaInput.value = usuario.senha;
+        editStatusInput.value = usuario.status;
 
-/*  MODAL  */
-const modal = document.getElementById("modalUsario")
-const fecharModal = document.querySelector("#btnFechar")
-const btnSalvar = document.querySelector("#btnSalvar")
-
-
-document.querySelector("#usuarioTable").addEventListener("click", function (event) {
-    const linha = event.target.closest("tr")
-    if (!linha) return
-
-    linhaSelecionada = linha
-    limparFormulario();
-
-    document.getElementById("editUsuario").value = linha.cells[0].innerText
-    document.getElementById("editSenha").value = linha.cells[1].innerText
-
-    modal.style.display = "block";
-})
-
-btnSalvar.addEventListener("click", function () {
-    if(linhaSelecionada){
-        linhaSelecionada.cells[0].innerText = document.getElementById("editUsuario").value
-        linhaSelecionada.cells[1].innerText = document.getElementById("editSenha").value
-
-        modal.style.display = "none";
-        linhaSelecionada = null
-        limparFormulario()
+        modalUsuario.style.display = 'block';
     }
-})
 
-fecharModal.addEventListener("click", function () {
-    modal.style.display = "none";
-    limparFormulario();
-})
-
-document.getElementById("Remover").addEventListener("click", function () {
-    if (linhaSelecionada) {
-        linhaSelecionada.remove();
-        linhaSelecionada = null;
-        limparFormulario();
-        modal.style.display = "none";
-
+    function fecharModal() {
+        modalUsuario.style.display = 'none';
+        usuarioSelecionadoIndex = null;
     }
-})
+
+    function salvarEdicao() {
+        if (usuarioSelecionadoIndex === null) return;
+
+        usuarios[usuarioSelecionadoIndex].usuario = editUsuarioInput.value;
+        usuarios[usuarioSelecionadoIndex].senha = editSenhaInput.value;
+        usuarios[usuarioSelecionadoIndex].status = editStatusInput.value;
+
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        renderTabela();
+        fecharModal();
+        mostrarToast("Usuário atualizado com sucesso!", "sucesso");
+    }
+
+    function confirmarRemocao() {
+        confirmModal.style.display = 'block';
+    }
+
+    function cancelarRemocao() {
+        confirmModal.style.display = 'none';
+    }
+
+    function removerUsuarioConfirmado() {
+        if (usuarioSelecionadoIndex === null) return;
+
+        usuarios.splice(usuarioSelecionadoIndex, 1);
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        renderTabela();
+        fecharModal();
+        confirmModal.style.display = 'none';
+        mostrarToast("Usuário removido com sucesso!", "erro");
+    }
+
+    function buscarUsuario() {
+        const termo = buscarInput.value.toLowerCase();
+        const linhas = usuarioTable.querySelectorAll('tr');
+
+        linhas.forEach((linha, index) => {
+            const nome = usuarios[index].usuario.toLowerCase();
+            linha.style.display = nome.includes(termo) ? '' : 'none';
+        });
+    }
+
+    function mostrarToast(mensagem, tipo = "sucesso") {
+        const toast = document.getElementById("toast");
+
+        toast.classList.remove("toast-sucesso", "toast-erro");
+        if (tipo === "sucesso") toast.classList.add("toast-sucesso");
+        else if (tipo === "erro") toast.classList.add("toast-erro");
+
+        toast.textContent = mensagem;
+        toast.classList.remove("hidden");
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 400);
+        }, 2500);
+    }
+
+    // Eventos
+    btnCadastrar.addEventListener('click', cadastrarUsuario);
+    btnFechar.addEventListener('click', fecharModal);
+    btnSalvar.addEventListener('click', salvarEdicao);
+    btnRemover.addEventListener('click', confirmarRemocao);
+    btnConfirmarNao.addEventListener('click', cancelarRemocao);
+    btnConfirmarSim.addEventListener('click', removerUsuarioConfirmado);
+    buscarInput.addEventListener('input', buscarUsuario);
+
+    renderTabela();
+});

@@ -7,34 +7,36 @@
     <link rel="stylesheet" href="../css/user.css">
 </head>
 
-<div id="modalUsario" class="modal" style="display: none;">
+<div id="modalUsuario" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button" style="display: none;">&times;</span>
-        <h2>Editar Livro</h2>
-        <form id="formEditarLivro">
+        <h2>Editar Usuário</h2>
+        <form id="formEditarUsuario">
             <div class="modal-header">
-
-                <label>Usúario:</label>
+                <label>Usuário:</label>
                 <input type="text" id="editUsuario"><br>
-                
+
                 <label>Senha:</label>
                 <input type="text" id="editSenha"><br>
-
             </div>
 
-            
+            <div class="modal-footer">
+                <label>Status:</label>
+                <select id="editStatus" required>
+                    <option value="">Selecione o Status</option>
+                    <option value="ATIVO">ATIVO</option>
+                    <option value="INATIVO">INATIVO</option>
+                </select>
+            </div>
 
             <div class="modal-buttons">
                 <button type="button" id="btnSalvar">Salvar</button>
                 <button type="button" id="btnFechar">Fechar</button>
-                <button type="button" id="Remover">Remover</button>
+                <button type="button" id="btnRemover">Remover</button>
             </div>
         </form>
     </div>
 </div>
-
-
-
 
 <body>
     <nav class="navigation">
@@ -47,12 +49,12 @@
                     <span class="title">Livraria Sola Scriptura</span>
                 </a>
             </li>
-            
+
             <li>
                 <a href="index.html">
                     <span class="icon" title="Planilha">
                         <ion-icon name="grid-outline"></ion-icon>
-                      </span>
+                    </span>
                     <span class="title">Catalogo</span>
                 </a>
             </li>
@@ -67,19 +69,18 @@
             </li>
             <li>
                 <a href="livro.html" data-section="livrosSection">
-                  <span class="icon" title="Livros">
-                    <ion-icon name="book-outline"></ion-icon>
-                  </span>
-                  <span class="title">Livros</span>
+                    <span class="icon" title="Livros">
+                        <ion-icon name="book-outline"></ion-icon>
+                    </span>
+                    <span class="title">Livros</span>
                 </a>
             </li>
-              
-        
+
             <li>
                 <a href="editora.html">
                     <span class="icon" title="Editoras">
                         <ion-icon name="business-outline"></ion-icon>
-                      </span>
+                    </span>
                     <span class="title">Editoras</span>
                 </a>
             </li>
@@ -88,7 +89,7 @@
                 <a href="lista.html">
                     <span class="icon" title="Informações">
                         <ion-icon name="list-outline"></ion-icon>
-                      </span>
+                    </span>
                     <span class="title">Lista de tarefas</span>
                 </a>
             </li>
@@ -97,7 +98,7 @@
                 <a href="infor.html">
                     <span class="icon" title="Informações">
                         <ion-icon name="information-circle-outline"></ion-icon>
-                      </span>
+                    </span>
                     <span class="title">Informações</span>
                 </a>
             </li>
@@ -107,28 +108,28 @@
                     <span class="icon" title="Informações do Usuário">
                         <ion-icon name="person-circle-outline"></ion-icon>
                     </span>
-                    <span class="title">usuarios</span>
+                    <span class="title">Usuários</span>
                 </a>
             </li>
         </ul>
     </nav>
 
     <main>
-        <div class="form-livro">            
+        <div class="form-livro">
             <div class="topbar">
                 <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
                 <div class="user"><img src="../img/image copy.png" alt="" /></div>
-            </div>        
+            </div>
             <div class="form-livro-header">
                 <h1>CADASTRE USUÁRIO</h1>
             </div>
             <form onsubmit="return false;">
                 <div class="form-livro-1">
                     <label for="usuario">Usuário:</label>
-                    <input id="usuario" type="text" placeholder="usuario" required />
+                    <input id="usuario" type="text" placeholder="Usuário" required />
                 </div>
                 <div class="form-livro-2">
-                    <label for="Senha">Senha:</label>
+                    <label for="senha">Senha:</label>
                     <input id="senha" type="text" placeholder="Senha" required />
                 </div>
                 <div class="button-devs">
@@ -140,13 +141,13 @@
         <section class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>USUÁRIO</h2>
+                    <h2>USUÁRIOS</h2>
                 </div>
-                
+
                 <div class="selecoes">
                     <div class="search">
                         <label>
-                            <input type="text"  id="buscarUsuario" placeholder="Procurar Usuario">
+                            <input type="text" id="buscarUsuario" placeholder="Procurar Usuários">
                             <ion-icon name="search-outline"></ion-icon>
                         </label>
                     </div>
@@ -163,21 +164,35 @@
                 <table id="usuarioTable">
                     <thead>
                         <tr>
-                            <td class="usuario">Usuário</td>
-                            <td class="senha">Senha</td>
+                            <td class="usuario">USUÁRIO</td>
+                            <td class="status">STATUS</td>
+                            <td class="data">DATA DE CADASTRO</td>
                         </tr>
+                    </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
-                
+            </div>
         </section>
     </main>
 
-    
+    <div id="toast" class="toast hidden">Mensagem aqui</div>
+
     <script src="../js/index.js"></script>
     <script src="../js/user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
+<div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-content-remover">
+      <p>Tem certeza que deseja remover este livro?</p>
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+        <button id="btnConfirmarSim">Sim</button>
+        <button id="btnConfirmarNao">Cancelar</button>
+      </div>
+    </div>
+</div>
+
 </html>
