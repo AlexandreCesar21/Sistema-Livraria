@@ -29,7 +29,7 @@ cadastIsbn.addEventListener("click", () => {
 
   // Verifica se os campos obrigatórios foram preenchidos
   if (!titulo || !autor || !editora || !categoria || !tipoCapa) {
-    mostrarToast("Preencha os campos obrigatórios!", "erro");
+    alert("Preencha os campos obrigatórios!");
     return;
   }
 
@@ -77,22 +77,24 @@ function limparFormularioIsbn() {
 
 // Função para adicionar o livro na tabela
 function adicionarLivroNaTabela(livro) {
-  const tabela = document.getElementById("livrosTable").getElementsByTagName("tbody")[0];
+  const linha = document.createElement("tr");
+  const classeStatus = livro.status === "ATIVO" ? "status-ativo" : "status-inativo";
 
-  const novaLinha = tabela.insertRow();
+  linha.innerHTML = `
+    <td>${livro.titulo}</td>
+    <td>${livro.subtitulo}</td>
+    <td>${livro.autor}</td>
+    <td>${livro.editora}</td>
+    <td>${livro.tipoCapa}</td>
+    <td>${livro.categoria}</td>
+    <td>${livro.isbn}</td>
+    <td>${livro.valor}</td>
+    <td>${livro.quantidade}</td>
+    <td class="${classeStatus}">${livro.status}</td>
+    <td class="data-horario">${livro.dataCadastro}</td>
+  `;
 
-  // Cria as células e preenche com os dados do livro
-  novaLinha.insertCell(0).textContent = livro.titulo;
-  novaLinha.insertCell(1).textContent = livro.subtitulo;
-  novaLinha.insertCell(2).textContent = livro.autor;
-  novaLinha.insertCell(3).textContent = livro.editora;
-  novaLinha.insertCell(4).textContent = livro.tipoCapa;
-  novaLinha.insertCell(5).textContent = livro.categoria;
-  novaLinha.insertCell(6).textContent = livro.isbn;
-  novaLinha.insertCell(7).textContent = livro.valor;
-  novaLinha.insertCell(8).textContent = livro.quantidade;
-  novaLinha.insertCell(9).textContent = livro.status;
-  novaLinha.insertCell(10).textContent = livro.dataCadastro;
+  document.querySelector("#livrosTable tbody").appendChild(linha);
 }
 
 // Função para salvar o livro no localStorage

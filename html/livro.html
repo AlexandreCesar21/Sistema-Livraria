@@ -87,11 +87,20 @@
 </div>
 
 
-<div id="modalIsbn" class="modal-isbn" style="display: none;">
+<div id="modalIsbn" class="modal-isbn">
     <div class="modal-isbn-content">
         <span class="close-button" style="display: none;">&times;</span>
         <h2>CADASTRO ISBN</h2>
         <form id="formEditarLivro">
+
+            <div class="modal-isbn-header">
+                <label>ISBN:</label>
+                <input type="text" id="isbnIsbn"><br>
+  
+                <button type="button" id="btnGerar">GERAR</button>
+                
+            </div>
+
             <div class="modal-isbn-header">
                 
                 <label>Titulo:</label>
@@ -118,11 +127,6 @@
 
             <div class="modal-footer">     
                 
-                
-                <label>ISBN:</label>
-                <input type="text" id="isbnIsbn"><br>
-
-
                 <label>Categoria:</label>
                 <select name="categoria" id="isbnCategoria">
                     <option value="" disabled selected></option>

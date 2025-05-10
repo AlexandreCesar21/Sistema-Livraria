@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const categoria = document.getElementById("categoria").value;
       const tipoCapa = document.getElementById("tipoCapa").value;
   
-      if (!titulo || !autor || !editora || !quantidade || !categoria || !tipoCapa) {
+      if (!titulo || !autor || !editora || !categoria || !tipoCapa) {
         const modalErro = document.getElementById("modalErroCampos");
         const fecharErro = document.querySelector(".close-erro");
       
