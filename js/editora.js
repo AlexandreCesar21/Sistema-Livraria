@@ -1,176 +1,138 @@
-let linhaSelecionada = null;
+document.addEventListener('DOMContentLoaded', () => {
+    const editoraTable = document.querySelector('#editoraTable tbody');
+    const inputEditora = document.getElementById('editora');
+    const btnCadastrar = document.querySelector('.button-cadast');
+    const buscarInput = document.getElementById('buscarEditora');
 
-document.querySelector(".button-cadast").addEventListener("click", function () {
-    const tabela = document.querySelector("#editoraTable tbody");
+    const modalEditora = document.getElementById('modalEditora');
+    const btnFechar = document.getElementById('btnFechar');
+    const btnSalvar = document.getElementById('btnSalvar');
+    const btnRemover = document.getElementById('Remover');
 
-    const editora = getValue("input[placeholder='Editora']");
-    const codigo = getValue("input[placeholder='Codigo']");
-    const status = getValue("#status");
+    const confirmModal = document.getElementById('confirmModal');
+    const btnConfirmarSim = document.getElementById('btnConfirmarSim');
+    const btnConfirmarNao = document.getElementById('btnConfirmarNao');
 
-    if(!editora || !codigo || !status) {
-        alert("Preencha todos os campos obrigatórios.");
-        return;
-    }
+    const editEditoraInput = document.getElementById('editEditora');
+    const editStatusInput = document.getElementById('editStatus');
 
-    const novaLinha = tabela.insertRow();
-    novaLinha.innerHTML = `
-        <td>${editora}</td>
-        <td>${codigo}</td>
-        <td>${status}</td>
-    `;
+    let editoras = JSON.parse(localStorage.getItem('editoras')) || [];
+    let editoraSelecionadaIndex = null;
 
-
-    corStatus(novaLinha.cells[2], status);
-
-    novaLinha.addEventListener("click", function () {
-        linhaSelecionada = this;
-        preencherFormularioComDados(this);
-    });
-
-    limparFormulario();
-    linhaSelecionada = null;
-})
-
-
-function getValue(selector) {
-    return document.querySelector(selector).value;
-}
-
-function preencherFormularioComDados(linha) {
-    limparFormulario();
-
-    document.querySelector("input[placeholder='Editora']").value = linha.cells[0].innerText;
-    document.querySelector("input[placeholder='Codigo']").value = linha.cells[1].innerText;
-    document.querySelector("#status").value = linha.cells[2].innerText;
-}
-
-function limparFormulario() {
-    document.querySelector("input[placeholder='Editora']").value = "";
-    document.querySelector("input[placeholder='Codigo']").value = "";
-    document.querySelector("#status").value = "";
-}
-
-
-let editoraSalvas = [];
-
-function salvarEditora() {
-    editoraSalvas = []
-    document.querySelectorAll("#editoraTable tbody tr").forEach(function (linha) {  
-        const colunas = linha.querySelectorAll("td");
-
-        const editora = {
-            nome: colunas[0].innerText,
-            codigo: colunas[1].innerText,
-            status: colunas[2].innerText
-        }
-        editoraSalvas.push(editora);
-})
-    localStorage.setItem("editoras", JSON.stringify(editoraSalvas));
-}
-
-function carregarEditoras() {
-    const dados = localStorage.getItem("editoras");
-    if (dados) {
-        const editoras = JSON.parse(dados);
-        const tabela = document.querySelector("#editoraTable tbody");
-        tabela.innerHTML = ""; // Limpa a tabela antes de carregar os dados
-
-        editoras.forEach(function (editora) {
-            const novaLinha = tabela.insertRow();
-            novaLinha.innerHTML = `
+    function renderTabela() {
+        editoraTable.innerHTML = '';
+        editoras.forEach((editora, index) => {
+            const tr = document.createElement('tr');
+            const classeStatus = editora.status === "ATIVO" ? "status-ativo" : "status-inativo";
+            tr.innerHTML = `
                 <td>${editora.nome}</td>
-                <td>${editora.codigo}</td>
-                <td>${editora.status}</td>
+                <td class="${classeStatus}">${editora.status}</td>
+                <td class="data-horario">${editora.data}</td>
             `;
-            corStatus(novaLinha.cells[2], editora.status);
-
-            novaLinha.addEventListener("click", function () {
-                linhaSelecionada = this;
-                preencherFormularioComDados(this);
-            });
+            tr.addEventListener('click', () => abrirModal(index));
+            editoraTable.appendChild(tr);
         });
     }
-}
 
-window.addEventListener("beforeunload", salvarEditora);
-window.addEventListener("load", carregarEditoras);
+    function cadastrarEditora() {
+        const nome = inputEditora.value.trim();
+        if (!nome) return mostrarToast("Digite o nome da editora!", "erro");
 
-document.getElementById("buscarEditora").addEventListener("input", function () {
-    const termoBusca = this.value.toLowerCase();
-    const linhas = document.querySelectorAll("#editoraTable tbody tr");
+        const novaEditora = {
+            nome,
+            status: 'ATIVO',
+            data: new Date().toLocaleString()
+        };
 
-    linhas.forEach((linha) => {
-        const textLinha = linha.innerText.toLowerCase();
-        linha.style.display = textLinha.includes(termoBusca) ? "" : "none";
-    })
-})
-
-
-
-function corStatus(td, statusValue) {
-    switch (statusValue.toLowerCase()) {
-        case 'inativo':
-            td.style.backgroundColor = "#d32e2e";
-            break;
-        case 'ativo':
-            td.style.backgroundColor = "#8de02c";
-            break;
+        editoras.push(novaEditora);
+        localStorage.setItem('editoras', JSON.stringify(editoras));
+        inputEditora.value = '';
+        renderTabela();
+        mostrarToast("Editora cadastrada com sucesso!", "sucesso");
     }
-    td.style.color = "black";
-    td.style.fontWeight = "900";
-}
 
+    function abrirModal(index) {
+        const editora = editoras[index];
+        editoraSelecionadaIndex = index;
+        editEditoraInput.value = editora.nome;
+        editStatusInput.value = editora.status;
 
-
-
-
-
-const modal = document.querySelector("#modalEditora");
-const fecharModal = document.querySelector("#btnFechar");
-const btnSalvar = document.querySelector("#btnSalvar");
-
-document.querySelector("#editoraTable").addEventListener("click", function (event) {
-    const linha = event.target.closest("tr");
-    if (!linha) return;
-
-    linhaSelecionada = linha;
-    limparFormulario();
-
-    document.getElementById("editEditora").value = linha.cells[0].innerText;
-    document.getElementById("editCodigo").value = linha.cells[1].innerText;
-    document.getElementById("editStatus").value = linha.cells[2].innerText;
-
-    modal.style.display = "block";
-})
-
-btnSalvar.addEventListener("click", function () {
-    if(linhaSelecionada){
-        linhaSelecionada.cells[0].innerText = document.getElementById("editEditora").value;
-        linhaSelecionada.cells[1].innerText = document.getElementById("editCodigo").value;
-        linhaSelecionada.cells[2].innerText = document.getElementById("editStatus").value;
-
-        corStatus(linhaSelecionada.cells[2], document.getElementById("editStatus").value);
-        modal.style.display = "none";
-        linhaSelecionada = null;
-        limparFormulario();
+        modalEditora.style.display = 'block';
     }
-})
 
-fecharModal.addEventListener("click", function () {
-    modal.style.display = "none";
-    limparFormulario();
-})
-
-document.getElementById("Remover").addEventListener("click", function () {
-    if (linhaSelecionada) {
-        linhaSelecionada.remove();
-        linhaSelecionada = null;
-        limparFormulario();
-        modal.style.display = "none";
-
+    function fecharModal() {
+        modalEditora.style.display = 'none';
+        editoraSelecionadaIndex = null;
     }
-})
 
+    function salvarEdicao() {
+        if (editoraSelecionadaIndex === null) return;
 
+        editoras[editoraSelecionadaIndex].nome = editEditoraInput.value;
+        editoras[editoraSelecionadaIndex].status = editStatusInput.value;
 
-console.log(window.innerWidth, window.innerHeight);
+        localStorage.setItem('editoras', JSON.stringify(editoras));
+        renderTabela();
+        fecharModal();
+        mostrarToast("Editora atualizada com sucesso!", "sucesso");
+    }
+
+    function confirmarRemocao() {
+        confirmModal.style.display = 'block';
+    }
+
+    function cancelarRemocao() {
+        confirmModal.style.display = 'none';
+    }
+
+    function removerEditoraConfirmado() {
+        if (editoraSelecionadaIndex === null) return;
+
+        editoras.splice(editoraSelecionadaIndex, 1);
+        localStorage.setItem('editoras', JSON.stringify(editoras));
+        renderTabela();
+        fecharModal();
+        confirmModal.style.display = 'none';
+        mostrarToast("Editora removida com sucesso!", "erro");
+    }
+
+    function buscarEditora() {
+        const termo = buscarInput.value.toLowerCase();
+        const linhas = editoraTable.querySelectorAll('tr');
+
+        linhas.forEach((linha, index) => {
+            const nome = editoras[index].nome.toLowerCase();
+            linha.style.display = nome.includes(termo) ? '' : 'none';
+        });
+    }
+
+    function mostrarToast(mensagem, tipo = "sucesso") {
+        const toast = document.getElementById("toast");
+
+        toast.classList.remove("toast-sucesso", "toast-erro");
+        if (tipo === "sucesso") toast.classList.add("toast-sucesso");
+        else if (tipo === "erro") toast.classList.add("toast-erro");
+
+        toast.textContent = mensagem;
+        toast.classList.remove("hidden");
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 400);
+        }, 2500);
+    }
+
+    // Eventos
+    btnCadastrar.addEventListener('click', cadastrarEditora);
+    btnFechar.addEventListener('click', fecharModal);
+    btnSalvar.addEventListener('click', salvarEdicao);
+    btnRemover.addEventListener('click', confirmarRemocao);
+    btnConfirmarNao.addEventListener('click', cancelarRemocao);
+    btnConfirmarSim.addEventListener('click', removerEditoraConfirmado);
+    buscarInput.addEventListener('input', buscarEditora);
+
+    renderTabela();
+});

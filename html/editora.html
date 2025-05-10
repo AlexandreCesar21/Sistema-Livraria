@@ -10,16 +10,14 @@
 <div id="modalEditora" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button" style="display: none;">&times;</span>
-        <h2>Editar Livro</h2>
-        <form id="formEditarLivro">
+        <h2>Editar Editora</h2>
+        <form id="formEditarEditora">
             <div class="modal-header">
                 <label>Editora:</label>
                 <input type="text" id="editEditora"><br>
             </div>
         
-
             <div class="modal-footer">
-    
                 <label>Status:</label>
                 <select id="editStatus" required>
                     <option value="">Selecione o Status</option>
@@ -27,8 +25,6 @@
                     <option value="INATIVO">INATIVO</option>
                 </select>
             </div>
-
-            
 
             <div class="modal-buttons">
                 <button type="button" id="btnSalvar">Salvar</button>
@@ -175,10 +171,25 @@
         </section>
     </main>
 
+    <div id="toast" class="toast hidden">Mensagem aqui</div>
+
+
     
     <script src="../js/index.js"></script>
     <script src="../js/editora.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
+<div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-content-remover">
+      <p>Tem certeza que deseja remover este livro?</p>
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+        <button id="btnConfirmarSim">Sim</button>
+        <button id="btnConfirmarNao">Cancelar</button>
+      </div>
+    </div>
+</div>
+
+
 </html>

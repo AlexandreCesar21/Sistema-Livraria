@@ -402,7 +402,7 @@ main .form-livro {
   padding-left: 35px;
   font-size: 15px;
   outline: none;
-  border: 2.5px solid var(--black2);
+  border: 2.5px solid var(--blue);
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
@@ -447,12 +447,14 @@ main .form-livro {
 .details table thead td {
   font-weight:600;
   border: solid 3px var(--blue);
+  color: var(--blue);
   text-align: center
 }
 
 
 .details .recentOrders table tr {
-  color: var(--black1);
+  color: var(--blue);
+  font-weight: 900;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .details .recentOrders table tr:last-child {
@@ -700,3 +702,106 @@ main .form-livro {
 
 
 /* ---------- MODAL ----------  */
+
+
+
+.status-ativo {
+  color: white;
+  font-weight: 900;
+  background-color: green;
+}
+
+.status-inativo {
+  color: white;
+  font-weight: 900;
+  background-color: red;
+}
+
+
+.data-horario {
+  color: black;
+  background-color: rgb(52, 181, 255);
+  font-weight: 900;
+}
+
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 14px 22px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #fff;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.hidden {
+  display: none;
+}
+
+/* Cores específicas */
+.toast-sucesso {
+  background-color: #28a745; /* Verde */
+}
+
+.toast-erro {
+  background-color: #dc3545; /* Vermelho */
+}
+
+
+div > #btnConfirmarSim {
+  width: 15%;
+  background-color: var(--blue);
+  color: #f5f5f5;
+  font-weight: 900;
+  font-size: 1em;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+div > #btnConfirmarNao {
+  width: 15%;
+  background-color: var(--blue);
+  color: #f5f5f5;
+  font-weight: 900;
+  font-size: 1em;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+div > #btnConfirmarSim:hover {
+  background-color: #410808d6;
+}
+
+div > #btnConfirmarNao:hover {
+  background-color: #410808d6;
+}
+
+
+
+.modal-content-remover {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 900px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto;
+  left: 36rem;
+  top: 25rem;
+}
