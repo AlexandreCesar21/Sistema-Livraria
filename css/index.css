@@ -274,13 +274,18 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+
 }
 .details table thead td {
   font-weight: 600;
+  border: 2px solid black;
+  color: var(--blue);
 }
+
 .details .recentOrders table tr {
   color: var(--black1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid black;
 }
 .details .recentOrders table tr:last-child {
   border-bottom: none;
@@ -291,6 +296,8 @@
 }
 .details .recentOrders table tr td {
   padding: 10px;
+  text-align: center;
+  border: 2px solid black;
 }
 .details .recentOrders table tr td:last-child {
   text-align: end;
@@ -308,6 +315,7 @@
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
+
 }
 .status.pending {
   padding: 2px 4px;
@@ -378,8 +386,19 @@
   color: var(--white);
 }
 
+ .status-ativo {
+   color: white;
+    font-weight: 900;
+    background-color: #8de02c;
+  }
 
 
+  .data-horario {
+    color: white;
+    background-color: rgb(108, 201, 255);
+    font-weight: 900;
+  }
+  
 
 
 
