@@ -63,3 +63,23 @@ function gerarRelatorio(numero) {
   // Aqui você pode chamar uma função que gera ou redireciona para o relatório correspondente
   fecharModal();
 }
+
+
+function buscarPorTitulo() {
+  const input = document.getElementById("inputBusca");
+  const filtro = input.value.toLowerCase();
+  const tabela = document.querySelector("table tbody");
+  const linhas = tabela.getElementsByTagName("tr");
+
+  for (let i = 0; i < linhas.length; i++) {
+    const celulaTitulo = linhas[i].getElementsByTagName("td")[0]; // Coluna do título
+    if (celulaTitulo) {
+      const textoTitulo = celulaTitulo.textContent || celulaTitulo.innerText;
+      if (textoTitulo.toLowerCase().indexOf(filtro) > -1) {
+        linhas[i].style.display = "";
+      } else {
+        linhas[i].style.display = "none";
+      }
+    }
+  }
+}

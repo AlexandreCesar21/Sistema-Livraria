@@ -152,16 +152,16 @@
       border-radius: 40px;
       padding: 5px 20px;
       padding-left: 35px;
-      font-size: 18px;
+      font-size: 20px;
       outline: none;
-      border: 1px solid var(--black2);
+      border: 2px solid var(--blue);
     }
     
     .search label ion-icon {
       position: absolute;
       top: 0;
       left: 10px;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
     
     .user {
@@ -232,7 +232,8 @@
 /* ================== Order Details List ============== */
 .details {
   position: relative;
-  width: 150%;
+  left: 7px;
+  width: 147%;
   height: 10%;
   padding: 20px;
   display: grid;
@@ -243,24 +244,52 @@
 
 .details .recentOrders {
   position: relative;
-  right: 10px;
   display: grid;
-  min-height: 500px;
+  min-height: 100px;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.63); /*sombra 63*/
   border-radius: 20px;
+  padding-bottom: 60px;
 }
 
 .details .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 4px;
 }
 .cardHeader h2 {
   font-weight: 900;
   color: var(--blue);
 }
+
+.selecoes {
+  padding: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  columns: auto;
+}
+
+.selecoes .botoes-infr {
+  position: relative;
+  text-align: end;
+  top: 3px;
+}
+.selecoes .botoes-infr button {
+  width: 8%;
+  height: 2rem;
+  margin-bottom: 20px;
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  font-weight: 900;
+  border-radius: 7px;
+}
+.selecoes .botoes-infr button:hover {
+  background-color: #410808d6;
+}
+
 .cardHeader .btn {
   position: relative;
   padding: 5px 10px;
@@ -273,73 +302,41 @@
 .details table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: -4px;
+  border: solid 3px var(--blue); 
+  font-weight: 500;
+ }
 
-}
 .details table thead td {
-  font-weight: 600;
-  border: 2px solid black;
-  color: var(--blue);
+  font-weight:600;
+  border: solid 3px var(--blue);
+  text-align: center
 }
+
+
 
 .details .recentOrders table tr {
-  color: var(--black1);
+  color: var(--blue);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border: 2px solid black;
 }
 .details .recentOrders table tr:last-child {
   border-bottom: none;
+  
 }
-.details .recentOrders table tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
+
 .details .recentOrders table tr td {
   padding: 10px;
+  border: solid 3px black; /*borda*/
   text-align: center;
-  border: 2px solid black;
 }
 .details .recentOrders table tr td:last-child {
-  text-align: end;
+  text-align: center;
 }
 .details .recentOrders table tr td:nth-child(2) {
-  text-align: end;
+  text-align: center;
 }
 .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
-}
-.status.delivered {
-  padding: 2px 4px;
-  background: #8de02c;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-
-}
-.status.pending {
-  padding: 2px 4px;
-  background: #e9b10a;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.status.return {
-  padding: 2px 4px;
-  background: #f00;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.status.inProgress {
-  padding: 2px 4px;
-  background: #1795ce;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .recentCustomers {
@@ -386,6 +383,17 @@
   color: var(--white);
 }
 
+.details .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+
+#livrosTable {
+  text-align: center;
+  vertical-align: middle;
+}
+
  .status-ativo {
    color: white;
     font-weight: 900;
@@ -424,6 +432,10 @@
   width: 400px;
   text-align: center;
 }
+.modal-conteudo h2 {
+  color: var(--blue);
+  font-weight: bolder;
+}
 
 .fechar {
   float: right;
@@ -439,11 +451,12 @@
   font-size: 16px;
   border-radius: 8px;
   border: none;
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
+  font-weight: 900;
   transition: background-color 0.3s;
 }
 
 .opcoes-relatorios button:hover {
-  background-color: #45a049;
+  background-color: #410808d6;
 }
