@@ -6,6 +6,22 @@
     <title>Sistema de livraria</title>
     <link rel="stylesheet" href="../css/index.css">
 </head>
+
+<div id="modalRelatorios" class="modal">
+  <div class="modal-conteudo">
+    <span class="fechar" onclick="fecharModal()">&times;</span>
+    <h2>Relatórios Disponíveis</h2>
+    <div class="opcoes-relatorios">
+      <button onclick="gerarRelatorio(1)">📄 GERAL</button>
+      <button onclick="gerarRelatorio(2)">📊 STATUS</button>
+      <button onclick="gerarRelatorio(3)">📁 AUTOR</button>
+      <button onclick="gerarRelatorio(4)">📌 EDITORA</button>
+      <button onclick="gerarRelatorio(5)">📆 VALOR</button>
+      <button onclick="gerarRelatorio(6)">📈 CATEGORIA</button>
+    </div>
+  </div>
+</div>
+
 <body>
     <nav class="navigation">
         <ul>
@@ -106,7 +122,10 @@
             <div class="recentOrders">
                 <div class="cardHeader">
                     <h2>LIVRARIA</h2>
+                    <a href="#" class="btn">Relatorio</a>
                     <a href="#" class="btn">Catalogo</a>
+
+                    <button onclick="abrirModal()">Ver Relatórios</button>
                 </div>
 
                 <table>
@@ -208,84 +227,7 @@
                             <td class="status-ativo "><span class="status delivered">Disponivel</span></td>
                             <td class="data-horario" style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
                         </tr>
-                       <tr>
-                            <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
-                        <tr>
-                            <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
-                        <tr>
-                           <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
-                        <tr>
-                            <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
-                        <tr>
-                            <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
-                        <tr>
-                           <td>Tese</td>
-                            <td style="text-align: center; margin: 2px;">Evangelico</td>
-                            <td>João Marcos</td>
-                            <td>Bereia</td>
-                            <td>2</td>
-                            <td>Comum</td>
-                            <td>Fisico</td>
-                            <td>100,00</td>
-                            <td>Evangelico</td>
-                            <td><span class="status delivered">Disponivel</span></td>
-                            <td style="text-align: center; margin: 2px;">12/05/2025, 19:41</td>
-                        </tr>
+                     
                       
                     </tbody>
                 </table>
@@ -306,3 +248,12 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
+
+
+<!--
+
+
+
+
+
+-->

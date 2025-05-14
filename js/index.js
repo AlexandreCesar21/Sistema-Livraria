@@ -46,3 +46,20 @@ toggle.onclick = function () {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
 };
+
+
+
+
+function abrirModal() {
+  document.getElementById("modalRelatorios").style.display = "block";
+}
+
+function fecharModal() {
+  document.getElementById("modalRelatorios").style.display = "none";
+}
+
+function gerarRelatorio(numero) {
+  alert("Gerando Relatório " + numero);
+  // Aqui você pode chamar uma função que gera ou redireciona para o relatório correspondente
+  fecharModal();
+}
